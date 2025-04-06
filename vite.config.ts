@@ -3,20 +3,13 @@ import react from "@vitejs/plugin-react";
 import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { URL } from 'url';
 
-// Use this for directory resolution
-const __dirname = path.resolve();
-
-export default defineConfig({
-  server: {
-    port: 3001,
-    strictPort: false,
-  },
+export default defineConfig(async () => ({
   plugins: [
     react(),
     runtimeErrorOverlay(),
     themePlugin(),
-    /* Removed Replit-specific cartographer plugin
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
@@ -25,18 +18,25 @@ export default defineConfig({
           ),
         ]
       : []),
-    */
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client", "src"),
-      "@shared": path.resolve(__dirname, "shared"),
-      "@assets": path.resolve(__dirname, "attached_assets"),
+      "@": path.resolve(new URL('.', import.meta.url).pathname, "client", "src"),
+      "@shared": path.resolve(new URL('.', import.meta.url).pathname, "shared"),
+      "@assets": path.resolve(new URL('.', import.meta.url).pathname, "attached_assets"),
     },
   },
-  root: path.resolve(__dirname, "client"),
+  root: path.resolve(new URL('.', import.meta.url).pathname, "client"),
   build: {
-    outDir: path.resolve(__dirname, "dist"),
+    outDir: path.resolve(new URL('.', import.meta.url).pathname, "dist/public"),
     emptyOutDir: true,
   },
-});
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+      }
+    }
+  }
+}));
