@@ -1,6 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import { useTheme } from "@/lib/theme-context";
 
+// Import images
+import blogSupplyChainImage from "/assets/blog-ai-supply-chain.png";
+import blogFutureWorkImage from "/assets/blog-future-work-ai.png";
+import blogPromptEngineeringImage from "/assets/prompt-engineering.png";
+
 const blogPosts = [
   {
     id: 1,
@@ -9,7 +14,7 @@ const blogPosts = [
     category: "Business Strategy",
     date: "2023-12-15",
     author: "Michael Chen",
-    image: "/assets/blog-ai-supply-chain.png",
+    image: blogSupplyChainImage,
     url: "/insights/supply-chain-transformation"
   },
   {
@@ -19,7 +24,7 @@ const blogPosts = [
     category: "Workplace Innovation",
     date: "2023-11-29",
     author: "Sarah Johnson",
-    image: "/assets/blog-future-work-ai.png",
+    image: blogFutureWorkImage,
     url: "/insights/future-work-ai"
   },
   {
@@ -29,7 +34,7 @@ const blogPosts = [
     category: "Technical Insights",
     date: "2023-11-17",
     author: "Alex Rivera",
-    image: "/assets/prompt-engineering.png",
+    image: blogPromptEngineeringImage,
     url: "/insights/prompt-engineering"
   }
 ];
@@ -81,7 +86,7 @@ export default function BlogSection() {
             >
               <div className="h-48 overflow-hidden">
                  <img 
-                   src={post.image} 
+                   src={post.image}
                    alt={post.title} 
                    className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
                      theme === 'dark' ? 'opacity-80 group-hover:opacity-100' : ''

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from "@/lib/theme-context";
 import { scrollToSection } from "@/lib/utils";
 import { ArrowRight, X, PhoneCall } from "lucide-react";
+import heroImage from "/assets/hero-image.png";
 
 export default function Hero() {
   const { theme } = useTheme();
@@ -14,7 +15,7 @@ export default function Hero() {
     message: ""
   });
   
-  const heroImagePath = "/assets/hero-image.png";
+  const heroImagePath = heroImage;
 
   useEffect(() => {
     console.log("[Hero] VITE_BASE_URL:", import.meta.env.BASE_URL);

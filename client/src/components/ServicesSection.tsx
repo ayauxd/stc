@@ -4,6 +4,12 @@ import { scrollToSection } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { X, PhoneCall } from "lucide-react";
 
+// Import images
+import aiStrategyImage from "/assets/ai-strategy.png";
+import autonomousAgentsImage from "/assets/autonomous-agents.png";
+import workflowAutomationImage from "/assets/workflow-automation.png";
+import promptEngineeringImage from "/assets/prompt-engineering.png";
+
 export default function ServicesSection() {
   const { theme } = useTheme();
   const [showContactForm, setShowContactForm] = useState(false);
@@ -13,25 +19,25 @@ export default function ServicesSection() {
       icon: <BrainCircuit className="w-12 h-12 text-[#00BCD4] mb-5" />,
       title: "AI Strategy Consulting",
       description: "Maximize ROI and transform your business with a tailored AI roadmap designed for impact.",
-      image: "/assets/ai-strategy.png"
+      image: aiStrategyImage
     },
     {
       icon: <Bot className="w-12 h-12 text-[#00BCD4] mb-5" />,
       title: "Autonomous Agents",
       description: "Increase efficiency by building specialized AI assistants that handle complex workflows autonomously.",
-      image: "/assets/autonomous-agents.png"
+      image: autonomousAgentsImage
     },
     {
       icon: <Workflow className="w-12 h-12 text-[#00BCD4] mb-5" />,
       title: "Workflow Automation",
       description: "Achieve continuous operation and adaptability with self-optimizing, AI-driven automated systems.",
-      image: "/assets/workflow-automation.png"
+      image: workflowAutomationImage
     },
     {
       icon: <BarChart3 className="w-12 h-12 text-[#00BCD4] mb-5" />,
       title: "Prompt Engineering",
       description: "Measure AI system effectiveness with real-time metrics and continuous improvement insights for your operations.",
-      image: "/assets/prompt-engineering.png"
+      image: promptEngineeringImage
     }
   ];
 

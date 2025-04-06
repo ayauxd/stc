@@ -4,6 +4,7 @@ import ThemeToggle from "./ThemeToggle";
 import { useTheme } from "@/lib/theme-context";
 import { scrollToSection } from "@/lib/utils";
 import { useLocation } from "wouter";
+import logoImage from "/assets/logo.png";
 
 interface HeaderProps {
   isSticky: boolean;
@@ -72,7 +73,7 @@ export default function Header({ isSticky }: HeaderProps) {
               }}
               className="flex items-center group transition-transform duration-300 hover:scale-105"
             >
-              <img src="/assets/logo.png" alt="Softworks Logo" className="w-10 h-10 mr-3 object-contain" />
+              <img src={logoImage} alt="Softworks Logo" className="w-10 h-10 mr-3 object-contain" />
               <div className="flex flex-col items-center">
                 <h1 className="text-xl font-bold transition-colors duration-300 text-[#212121] tracking-wide">
                   SOFTWORKS
