@@ -1,10 +1,12 @@
 import { BrainCircuit, Bot, Workflow, BarChart3 } from "lucide-react";
 import { useTheme } from "@/lib/theme-context";
 import { scrollToSection } from "@/lib/utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { X, PhoneCall } from "lucide-react";
 
 export default function ServicesSection() {
   const { theme } = useTheme();
+  const [showContactForm, setShowContactForm] = useState(false);
   
   const services = [
     {
@@ -40,10 +42,19 @@ export default function ServicesSection() {
     });
   }, []);
 
+  const handleOpenContactForm = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowContactForm(true);
+  };
+
+  const handleCloseContactForm = () => {
+    setShowContactForm(false);
+  };
+
   // Removed local scrollToSection function, using imported utility
 
   return (
-    <section id="services-section" className={`py-24 md:py-32 px-6 lg:px-12 ${
+    <section id="services-section" className={`py-24 md:py-28 px-6 lg:px-12 ${
       theme === 'dark' 
         ? 'bg-[#002B36]' 
         : 'bg-[#F5F5F5]'
@@ -65,13 +76,10 @@ export default function ServicesSection() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => {
-            // Generate slug from title for the link
-            const slug = service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
             return (
-              <a
+              <div
                 key={index} 
-                href={`/insights/${slug}`}
-                className={`block rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl ${
+                className={`rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl ${
                   theme === 'dark'
                     ? 'bg-[#001B26] hover:shadow-[0_8px_30px_rgba(0,188,212,0.15)]' 
                     : 'bg-white'
@@ -96,24 +104,151 @@ export default function ServicesSection() {
                     {service.description}
                   </p>
                 </div>
-              </a>
+              </div>
             )
           })}
         </div>
 
         <div className="mt-20 text-center">
-          <a
-            href="#chatbot-section"
-            onClick={(e) => scrollToSection('chatbot-section', e)}
+          <button
+            onClick={handleOpenContactForm}
             className="inline-flex items-center bg-[#00BCD4] hover:bg-[#00ACC1] text-white font-medium py-3 px-8 rounded-md shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,188,212,0.4)]"
           >
-            <span>Request a Custom Solution</span>
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-            </svg>
-          </a>
+            <PhoneCall className="w-5 h-5 mr-2" />
+            <span>Schedule a Consultation</span>
+          </button>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      {showContactForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="bg-[#101520] border border-[#00BCD4]/10 rounded-xl shadow-xl overflow-hidden w-full max-w-md animate-scale-in">
+            <div className="border-b border-[#00BCD4]/20 p-4 flex items-center justify-between">
+              <div className="flex items-center">
+                <PhoneCall className="w-5 h-5 mr-2 text-[#00BCD4]" />
+                <span className="font-medium text-white">Schedule a Consultation</span>
+              </div>
+              <button 
+                onClick={handleCloseContactForm}
+                className="p-2 rounded-full text-gray-400 hover:text-white hover:bg-[#1A2331] transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6">
+              <form className="space-y-4" onSubmit={(e) => {
+                e.preventDefault();
+                alert("Thank you for your request! We'll contact you shortly.");
+                handleCloseContactForm();
+              }}>
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-1">
+                    Your Name *
+                  </label>
+                  <input 
+                    type="text" 
+                    id="name"
+                    name="name"
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-1">
+                    Email Address *
+                  </label>
+                  <input 
+                    type="email" 
+                    id="email"
+                    name="email"
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-1">
+                    Phone Number
+                  </label>
+                  <input 
+                    type="tel" 
+                    id="phone"
+                    name="phone"
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="company" className="block text-sm font-medium text-gray-400 mb-1">
+                    Company Name
+                  </label>
+                  <input 
+                    type="text" 
+                    id="company"
+                    name="company"
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="service" className="block text-sm font-medium text-gray-400 mb-1">
+                    Service Interest *
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
+                    required
+                  >
+                    <option value="" disabled selected>Select an AI service...</option>
+                    <option value="ai-strategy">AI Strategy Consulting</option>
+                    <option value="autonomous-agents">Autonomous Agents</option>
+                    <option value="workflow-automation">Workflow Automation</option>
+                    <option value="prompt-engineering">Prompt Engineering</option>
+                    <option value="custom-solutions">Custom AI Solutions</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-1">
+                    Project Description *
+                  </label>
+                  <textarea 
+                    id="message"
+                    name="message"
+                    rows={3}
+                    placeholder="Tell us about your project needs and business goals"
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4] resize-none"
+                    required
+                  ></textarea>
+                </div>
+                <div>
+                  <label htmlFor="timeline" className="block text-sm font-medium text-gray-400 mb-1">
+                    Project Timeline
+                  </label>
+                  <select
+                    id="timeline"
+                    name="timeline" 
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
+                  >
+                    <option value="" disabled selected>When do you need this implemented?</option>
+                    <option value="immediate">Immediately</option>
+                    <option value="1-3months">1-3 months</option>
+                    <option value="3-6months">3-6 months</option>
+                    <option value="6-12months">6-12 months</option>
+                    <option value="exploring">Just exploring options</option>
+                  </select>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full p-2 mt-2 rounded-md bg-[#00BCD4] hover:bg-[#00ACC1] text-white font-medium transition-colors"
+                >
+                  Submit Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

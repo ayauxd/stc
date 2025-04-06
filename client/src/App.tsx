@@ -5,23 +5,21 @@ import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import { ThemeProvider } from "./lib/theme-context";
-
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
+import BlogPost from "@/pages/BlogPost";
+import Insights from "@/pages/Insights";
 
 function App() {
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
-        <Router />
-        <Toaster />
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/insights" component={Insights} />
+          <Route path="/insights/:slug" component={BlogPost} />
+          <Route component={NotFound} />
+        </Switch>
       </QueryClientProvider>
+      <Toaster />
     </ThemeProvider>
   );
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@/lib/theme-context";
 import { scrollToSection } from "@/lib/utils";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, X, PhoneCall } from "lucide-react";
 
 export default function Hero() {
   const { theme } = useTheme();
@@ -85,17 +85,10 @@ export default function Hero() {
             We don't just integrate AI—we rewire how your operations think using adaptive agentic workflows (AI systems that can act independently to achieve goals).
           </p>
           <div className="flex flex-wrap gap-5">
-            <button
-              onClick={handleOpenForm}
-              className="inline-flex items-center bg-[#00BCD4] hover:bg-[#00ACC1] text-white font-medium py-3 px-6 md:px-8 h-[44px] rounded-md transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-              aria-label="Schedule a Consultation"
-            >
-              Schedule a Consultation
-            </button>
             <a 
               href="#services-section" 
               onClick={(e) => scrollToSection('services-section', e)}
-              className="inline-flex items-center gap-2 font-medium py-3 px-6 md:px-8 h-[44px] rounded-md transition-all duration-300 transform hover:-translate-y-0.5 bg-white/20 border border-white/70 text-white hover:bg-white/30 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 font-medium py-3 px-6 md:px-8 h-[44px] rounded-md transition-all duration-300 transform hover:-translate-y-0.5 bg-[#00BCD4] hover:bg-[#00ACC1] text-white shadow-lg hover:shadow-xl"
               aria-label="Learn More"
             >
               <span>Learn More</span>
@@ -107,158 +100,136 @@ export default function Hero() {
       
       {/* Consultation Form Modal */}
       {showConsultationForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-             onClick={handleCloseForm}>
-          <div 
-            className={`w-full max-w-lg p-6 rounded-xl shadow-2xl ${
-              theme === 'dark' ? 'bg-[#001B26] border border-[#00BCD4]/20' : 'bg-white'
-            }`}
-            onClick={e => e.stopPropagation()}
-          >
-            <div className="flex justify-between items-center mb-6">
-              <h3 className={`text-xl font-bold ${
-                theme === 'dark' ? 'text-[#F5F5F5]' : 'text-[#212121]'
-              }`}>
-                Schedule a Consultation
-              </h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="bg-[#101520] border border-[#00BCD4]/10 rounded-xl shadow-xl overflow-hidden w-full max-w-md animate-scale-in">
+            <div className="border-b border-[#00BCD4]/20 p-4 flex items-center justify-between">
+              <div className="flex items-center">
+                <PhoneCall className="w-5 h-5 mr-2 text-[#00BCD4]" />
+                <span className="font-medium text-white">Schedule a Consultation</span>
+              </div>
               <button 
                 onClick={handleCloseForm}
-                className={`p-1.5 rounded-full hover:bg-opacity-10 ${
-                  theme === 'dark' ? 'hover:bg-white text-gray-400 hover:text-white' : 'hover:bg-black text-gray-500 hover:text-black'
-                }`}
+                className="p-2 rounded-full text-gray-400 hover:text-white hover:bg-[#1A2331] transition-colors"
+                aria-label="Close modal"
               >
-                <X className="h-5 w-5" />
+                <X className="w-5 h-5" />
               </button>
             </div>
             
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label 
-                    htmlFor="name" 
-                    className={`block text-sm font-medium mb-1 ${
-                      theme === 'dark' ? 'text-[#B0BEC5]' : 'text-[#424242]'
-                    }`}
-                  >
-                    Full Name
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-1">
+                    Your Name *
                   </label>
-                  <input
+                  <input 
+                    type="text" 
                     id="name"
                     name="name"
-                    type="text"
                     value={formData.name}
                     onChange={handleChange}
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
                     required
-                    className={`w-full rounded-lg py-2.5 px-4 border focus:outline-none focus:ring-2 focus:ring-[#00BCD4] ${
-                      theme === 'dark'
-                        ? 'bg-[#003747] border-[#00BCD4]/30 text-[#F5F5F5] focus:border-[#00BCD4]'
-                        : 'bg-white border-gray-300 text-[#212121] focus:border-[#00BCD4]'
-                    }`}
                   />
                 </div>
                 <div>
-                  <label 
-                    htmlFor="email" 
-                    className={`block text-sm font-medium mb-1 ${
-                      theme === 'dark' ? 'text-[#B0BEC5]' : 'text-[#424242]'
-                    }`}
-                  >
-                    Email Address
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-1">
+                    Email Address *
                   </label>
-                  <input
+                  <input 
+                    type="email" 
                     id="email"
                     name="email"
-                    type="email"
                     value={formData.email}
                     onChange={handleChange}
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
                     required
-                    className={`w-full rounded-lg py-2.5 px-4 border focus:outline-none focus:ring-2 focus:ring-[#00BCD4] ${
-                      theme === 'dark'
-                        ? 'bg-[#003747] border-[#00BCD4]/30 text-[#F5F5F5] focus:border-[#00BCD4]'
-                        : 'bg-white border-gray-300 text-[#212121] focus:border-[#00BCD4]'
-                    }`}
                   />
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label 
-                    htmlFor="phone" 
-                    className={`block text-sm font-medium mb-1 ${
-                      theme === 'dark' ? 'text-[#B0BEC5]' : 'text-[#424242]'
-                    }`}
-                  >
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-1">
                     Phone Number
                   </label>
-                  <input
+                  <input 
+                    type="tel" 
                     id="phone"
                     name="phone"
-                    type="tel"
                     value={formData.phone}
                     onChange={handleChange}
-                    className={`w-full rounded-lg py-2.5 px-4 border focus:outline-none focus:ring-2 focus:ring-[#00BCD4] ${
-                      theme === 'dark'
-                        ? 'bg-[#003747] border-[#00BCD4]/30 text-[#F5F5F5] focus:border-[#00BCD4]'
-                        : 'bg-white border-gray-300 text-[#212121] focus:border-[#00BCD4]'
-                    }`}
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
                   />
                 </div>
                 <div>
-                  <label 
-                    htmlFor="company" 
-                    className={`block text-sm font-medium mb-1 ${
-                      theme === 'dark' ? 'text-[#B0BEC5]' : 'text-[#424242]'
-                    }`}
-                  >
-                    Company
+                  <label htmlFor="company" className="block text-sm font-medium text-gray-400 mb-1">
+                    Company Name
                   </label>
-                  <input
+                  <input 
+                    type="text" 
                     id="company"
                     name="company"
-                    type="text"
                     value={formData.company}
                     onChange={handleChange}
-                    className={`w-full rounded-lg py-2.5 px-4 border focus:outline-none focus:ring-2 focus:ring-[#00BCD4] ${
-                      theme === 'dark'
-                        ? 'bg-[#003747] border-[#00BCD4]/30 text-[#F5F5F5] focus:border-[#00BCD4]'
-                        : 'bg-white border-gray-300 text-[#212121] focus:border-[#00BCD4]'
-                    }`}
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
                   />
                 </div>
-              </div>
-              
-              <div>
-                <label 
-                  htmlFor="message" 
-                  className={`block text-sm font-medium mb-1 ${
-                    theme === 'dark' ? 'text-[#B0BEC5]' : 'text-[#424242]'
-                  }`}
+                <div>
+                  <label htmlFor="service" className="block text-sm font-medium text-gray-400 mb-1">
+                    Service Interest *
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
+                    required
+                  >
+                    <option value="" disabled selected>Select an AI service...</option>
+                    <option value="ai-strategy">AI Strategy Consulting</option>
+                    <option value="autonomous-agents">Autonomous Agents</option>
+                    <option value="workflow-automation">Workflow Automation</option>
+                    <option value="prompt-engineering">Prompt Engineering</option>
+                    <option value="custom-solutions">Custom AI Solutions</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-1">
+                    Project Description *
+                  </label>
+                  <textarea 
+                    id="message"
+                    name="message"
+                    rows={3}
+                    placeholder="Tell us about your project needs and business goals"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4] resize-none"
+                    required
+                  ></textarea>
+                </div>
+                <div>
+                  <label htmlFor="timeline" className="block text-sm font-medium text-gray-400 mb-1">
+                    Project Timeline
+                  </label>
+                  <select
+                    id="timeline"
+                    name="timeline" 
+                    className="w-full rounded-md bg-[#1A2331] border border-[#00BCD4]/30 text-white p-2 focus:outline-none focus:border-[#00BCD4] focus:ring-1 focus:ring-[#00BCD4]"
+                  >
+                    <option value="" disabled selected>When do you need this implemented?</option>
+                    <option value="immediate">Immediately</option>
+                    <option value="1-3months">1-3 months</option>
+                    <option value="3-6months">3-6 months</option>
+                    <option value="6-12months">6-12 months</option>
+                    <option value="exploring">Just exploring options</option>
+                  </select>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full p-2 mt-2 rounded-md bg-[#00BCD4] hover:bg-[#00ACC1] text-white font-medium transition-colors"
                 >
-                  How can we help you?
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className={`w-full rounded-lg py-2.5 px-4 border focus:outline-none focus:ring-2 focus:ring-[#00BCD4] ${
-                    theme === 'dark'
-                      ? 'bg-[#003747] border-[#00BCD4]/30 text-[#F5F5F5] focus:border-[#00BCD4]'
-                      : 'bg-white border-gray-300 text-[#212121] focus:border-[#00BCD4]'
-                  }`}
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full bg-[#00BCD4] hover:bg-[#00ACC1] text-white font-medium py-3 px-6 rounded-md transition-all duration-300 shadow hover:shadow-lg transform hover:-translate-y-0.5"
-              >
-                Submit Request
-              </button>
-            </form>
+                  Submit Request
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       )}

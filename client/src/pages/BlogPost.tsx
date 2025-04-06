@@ -1,7 +1,8 @@
-import { useParams } from "wouter";
+import { useParams, Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/lib/theme-context";
+import { ChevronRight } from "lucide-react";
 
 interface BlogPost {
   id: number;
@@ -209,6 +210,25 @@ export default function BlogPost() {
     }`}>
       <Header isSticky={true} />
       <main className="flex-grow container mx-auto px-6 lg:px-12 py-24 md:py-32">
+        {/* Add Breadcrumbs */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <div className={`flex items-center text-sm ${
+            theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+          }`}>
+            <Link href="/">
+              <a className="hover:text-[#00BCD4] transition-colors">Home</a>
+            </Link>
+            <ChevronRight className="w-4 h-4 mx-2" />
+            <Link href="/insights">
+              <a className="hover:text-[#00BCD4] transition-colors">Insights</a>
+            </Link>
+            <ChevronRight className="w-4 h-4 mx-2" />
+            <span className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>
+              {post.title}
+            </span>
+          </div>
+        </div>
+        
         {/* Featured Image */}
         <div className="mb-12 max-w-4xl mx-auto">
           <div className="rounded-xl overflow-hidden h-[300px] md:h-[400px]">
