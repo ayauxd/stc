@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": ["Bash(git:*)", "Write(*)", "Read(*)"]
+  },
+  "hooks": {
+    "Stop": [{
+      "hooks": [{
+        "type": "prompt",
+        "prompt": "Task complete? Respond ONLY: {\"ok\": true} or {\"ok\": false, \"reason\": \"why\"}",
+        "timeout": 15
+      }]
+    }]
+  }
+}
