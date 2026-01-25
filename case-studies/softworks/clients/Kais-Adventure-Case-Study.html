@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Kai's 7th Jurassic Adventure</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --jungle-dark: #14532d;
+            --jungle: #166534;
+            --jungle-light: #22c55e;
+            --amber: #f59e0b;
+            --amber-light: #fbbf24;
+            --orange: #f97316;
+            --dark: #1a1a1a;
+            --gray: #4b5563;
+            --light: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: #f1f5f9;
+        }
+
+        .page {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        @media print {
+            body { background: white; }
+            .page { box-shadow: none; }
+            .no-print { display: none !important; }
+            .page-break { page-break-before: always; }
+        }
+
+        /* Cover */
+        .cover {
+            background: linear-gradient(135deg, var(--jungle-dark) 0%, #0f3d1c 100%);
+            color: white;
+            padding: 80px 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: "🦖";
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.05;
+            right: -50px;
+            bottom: -50px;
+        }
+
+        .cover-badge {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .cover h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .cover h1 span {
+            color: var(--amber);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: #86efac;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .cover-meta {
+            margin-top: auto;
+            padding-top: 60px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .cover-meta-item {
+            border-left: 3px solid var(--amber);
+            padding-left: 16px;
+        }
+
+        .cover-meta-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #86efac;
+            margin-bottom: 4px;
+        }
+
+        .cover-meta-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Content Pages */
+        .content {
+            padding: 60px;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--jungle-dark);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        h2 .icon {
+            font-size: 36px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 35px 0 15px;
+            color: var(--dark);
+        }
+
+        h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 25px 0 12px;
+            color: var(--gray);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--gray);
+        }
+
+        .lead {
+            font-size: 18px;
+            color: var(--dark);
+            margin-bottom: 30px;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #bbf7d0;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .feature h5 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--jungle-dark);
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: var(--jungle-dark);
+            color: white;
+            padding: 24px 16px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--amber);
+        }
+
+        .stat-box .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 12px;
+            top: 8px;
+            bottom: 8px;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--jungle), var(--amber));
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -34px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            background: var(--amber);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .timeline-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .timeline-content {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: #e2e8f0;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .code-block .comment { color: #64748b; }
+        .code-block .keyword { color: #f472b6; }
+        .code-block .string { color: #a5f3fc; }
+        .code-block .function { color: #fbbf24; }
+
+        /* Diagram Box */
+        .diagram {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .diagram pre {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            line-height: 1.4;
+            text-align: left;
+            display: inline-block;
+        }
+
+        /* Callout */
+        .callout {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--amber);
+            border-radius: 0 12px 12px 0;
+            padding: 20px 24px;
+            margin: 25px 0;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .callout p {
+            color: #78350f;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Problem/Solution */
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .problem {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .problem h5 {
+            color: #991b1b;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .problem p {
+            color: #7f1d1d;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .solution {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .solution h5 {
+            color: #166534;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .solution p {
+            color: #14532d;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Component List */
+        .component-list {
+            margin: 20px 0;
+        }
+
+        .component {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .component:last-child {
+            border-bottom: none;
+        }
+
+        .component-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--jungle);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .component-content h5 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .component-content p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: var(--jungle-dark);
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* Screen Mockup */
+        .screen-mockup {
+            background: #1a1a1a;
+            border-radius: 24px;
+            padding: 12px;
+            margin: 30px auto;
+            max-width: 280px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+
+        .screen-mockup-inner {
+            background: var(--jungle-dark);
+            border-radius: 16px;
+            padding: 20px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .screen-mockup-inner h6 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--amber);
+            margin-bottom: 8px;
+        }
+
+        .screen-mockup-inner p {
+            color: #86efac;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .screen-mockup-inner .btn {
+            background: var(--orange);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* Flow Diagram */
+        .flow-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .flow-step {
+            background: var(--jungle-dark);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .flow-step.highlight {
+            background: var(--orange);
+        }
+
+        .flow-step.success {
+            background: var(--jungle);
+        }
+
+        .flow-arrow {
+            color: #9ca3af;
+            font-size: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--jungle-dark);
+            color: white;
+            padding: 40px 60px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--amber);
+            margin-bottom: 8px;
+        }
+
+        .footer p {
+            color: #86efac;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #86efac;
+        }
+
+        .footer-links a {
+            color: var(--amber);
+            text-decoration: none;
+        }
+
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+            z-index: 100;
+        }
+
+        .print-btn:hover {
+            background: #ea580c;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 16px 0 16px 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--gray);
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">Save as PDF</button>
+
+    <div class="page">
+        <!-- COVER PAGE -->
+        <div class="cover">
+            <div class="cover-badge">Development Case Study</div>
+            <h1>Kai's <span>7th</span><br>Jurassic Adventure</h1>
+            <p class="cover-subtitle">How we built a custom AI photo experience for a children's birthday party in 4 days</p>
+
+            <div class="cover-meta">
+                <div class="cover-meta-item">
+                    <div class="cover-meta-label">Client</div>
+                    <div class="cover-meta-value">Private Event (Hui Family)</div>
+                </div>
+                <div class="cover-meta-item">
+                    <div class="cover-meta-label">Timeline</div>
+                    <div class="cover-meta-value">January 17-20, 2026</div>
+                </div>
+                <div class="cover-meta-item">
+                    <div class="cover-meta-label">Live URL</div>
+                    <div class="cover-meta-value">kai.slopgpt.com</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE BRIEF -->
+    <div class="page">
+        <div class="content">
+            <h2><span class="icon">📋</span> The Brief</h2>
+
+            <p class="lead">Hui wanted something special for her son Kai's 7th birthday party: a way for party guests to become part of a dinosaur adventure. Not just stickers or filters—real AI-generated scenes where kids could see themselves as explorers, fossil hunters, and dinosaur tamers.</p>
+
+            <h3>The Requirements</h3>
+
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h5>Mobile-First</h5>
+                    <p>Must work perfectly on any phone. Party guests will use their own devices—no special equipment.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎫</div>
+                    <h5>Invite System</h5>
+                    <p>Unique links for each guest with limited uses. Admin needs to add more credits easily.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🦕</div>
+                    <h5>5 Themed Scenes</h5>
+                    <p>Variety of dinosaur adventures: fossil hunting, taming raptors, volcano exploring, and more.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💾</div>
+                    <h5>Easy Saving</h5>
+                    <p>Guests must be able to save their images easily. No account creation required.</p>
+                </div>
+            </div>
+
+            <h3>The Challenge</h3>
+
+            <p>AI image generation is powerful but unpredictable. The key challenge: <strong>preserve the child's face</strong> while transforming everything else into a dinosaur scene. Most AI tools either:</p>
+
+            <ul>
+                <li>Change the face too much (doesn't look like the kid)</li>
+                <li>Keep the face but don't transform the scene enough (boring)</li>
+                <li>Work on desktop but break on mobile</li>
+                <li>Require accounts, logins, or app downloads (friction)</li>
+            </ul>
+
+            <div class="callout">
+                <div class="callout-title">💡 Key Insight</div>
+                <p>Parents at a kids' party have about 30 seconds of patience. The experience needs to be: open link → take photo → pick scene → see magic → save. Any extra step loses them.</p>
+            </div>
+
+            <h3>Project Stats</h3>
+
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="number">4</div>
+                    <div class="label">Days to Build</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">32</div>
+                    <div class="label">Source Files</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">5,500</div>
+                    <div class="label">Lines of Code</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">$15</div>
+                    <div class="label">API Cost</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEVELOPMENT TIMELINE -->
+    <div class="page page-break">
+        <div class="content">
+            <h2><span class="icon">📅</span> Development Timeline</h2>
+
+            <p class="lead">From first commit to live deployment in 4 days. Here's how the project evolved.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Day 1 — January 17</div>
+                    <div class="timeline-title">Foundation & Core Architecture</div>
+                    <div class="timeline-content">
+                        <p>Set up the project structure with React + Vite + Tailwind CSS. Built the basic flow: upload photo → select theme → generate image. Initially used client-side Gemini API calls.</p>
+                        <p><strong>Key decisions:</strong> Chose Vercel for hosting (instant deploys), Vercel KV for database (simple key-value storage for invites).</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Day 2 — January 18</div>
+                    <div class="timeline-title">AI Generation & Fallback System</div>
+                    <div class="timeline-content">
+                        <p>Hit the first major problem: Gemini's free tier only allows 30 image generations per day. At a party with 30+ guests, we'd run out fast.</p>
+                        <p><strong>Solution:</strong> Moved AI calls to server-side API routes. Added Replicate FLUX as automatic fallback when Gemini quota exceeded. Now the app tries Gemini first (best quality), falls back to FLUX (reliable backup).</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Day 3 — January 19</div>
+                    <div class="timeline-title">Invite System & Admin Panel</div>
+                    <div class="timeline-content">
+                        <p>Built the complete invite system: unique tokens, usage limits, device fingerprinting (soft lock to prevent link sharing). Created admin dashboard for Hui to manage guests, add credits, and share links via WhatsApp.</p>
+                        <p><strong>Features added:</strong> Credit counter, locked device indicator, bulk credit addition, real-time usage stats.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Day 4 — January 20</div>
+                    <div class="timeline-title">Mobile UX Polish & Final Fixes</div>
+                    <div class="timeline-content">
+                        <p>Testing on real iPhones revealed critical issues: consent modal couldn't scroll, checkbox was hard to tap, save button opened a blank page instead of saving.</p>
+                        <p><strong>Fixes:</strong> Rewrote consent modal with full-page scroll, created SaveModal component with long-press instructions, added toast notifications for admin actions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">🔄 34 Commits Total</div>
+                <p>Each feature went through multiple iterations. The final product is the result of constant testing and refinement—especially on mobile devices.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOW IT WORKS (USER FLOW) -->
+    <div class="page page-break">
+        <div class="content">
+            <h2><span class="icon">🔄</span> How It Works</h2>
+
+            <p class="lead">The guest experience is designed to be effortless. Here's the complete user journey from receiving an invite to sharing their dinosaur photo.</p>
+
+            <h3>The Guest Journey</h3>
+
+            <div class="flow-steps">
+                <div class="flow-step">Receive Link</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">Tap "Let's Go"</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">Accept Terms</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step highlight">Upload Selfie</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step highlight">Pick Theme</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step success">See Magic!</div>
+            </div>
+
+            <h3>Step-by-Step Breakdown</h3>
+
+            <div class="component-list">
+                <div class="component">
+                    <div class="component-icon">🔗</div>
+                    <div class="component-content">
+                        <h5>1. Open Invite Link</h5>
+                        <p>Guest receives a unique URL like <code>kai.slopgpt.com/i/ABC123xyz</code>. Each link is tied to a guest name and has a set number of "credits" (default: 5 generations).</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">🎉</div>
+                    <div class="component-content">
+                        <h5>2. Welcome Splash</h5>
+                        <p>Fun animated intro: "Welcome to Kai's 7th Jurassic Adventure!" with a preview of what they'll create. Big "LET'S GO!" button to continue.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">✅</div>
+                    <div class="component-content">
+                        <h5>3. Consent Screen</h5>
+                        <p>Quick terms explaining: photos aren't stored, images must be downloaded before leaving, and responsible use guidelines. One checkbox to accept, then "BEGIN ADVENTURE".</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">📸</div>
+                    <div class="component-content">
+                        <h5>4. Upload Photo</h5>
+                        <p>Camera opens directly (on mobile) or file picker (on desktop). Photo is resized and compressed client-side for fast upload. No photo ever leaves the device except for AI processing.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">🦖</div>
+                    <div class="component-content">
+                        <h5>5. Choose Theme</h5>
+                        <p>Five dinosaur adventure themes to choose from. Each shows a preview image and description. Themes get "locked" after use to encourage trying different ones.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">⏳</div>
+                    <div class="component-content">
+                        <h5>6. Generation (20-40 seconds)</h5>
+                        <p>Photo is sent to AI. Animated loading screen with fun dinosaur facts keeps guests entertained. Progress messages update: "Warming up the time machine...", "Teaching dinosaurs to pose..."</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">🖼️</div>
+                    <div class="component-content">
+                        <h5>7. Result with Polaroid Effect</h5>
+                        <p>Generated image appears with a "developing" animation like an instant camera photo. Styled as a polaroid with theme name caption. Download and share buttons prominent.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">💾</div>
+                    <div class="component-content">
+                        <h5>8. Save Image</h5>
+                        <p>On iOS: Share sheet opens with "Save Image" option. If that fails, full-screen view with "Long press to save" instructions. Image styled for sharing on social media.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE 5 THEMES -->
+    <div class="page page-break">
+        <div class="content">
+            <h2><span class="icon">🎨</span> The 5 Adventure Themes</h2>
+
+            <p class="lead">Each theme tells a different story. The AI prompt is carefully crafted to preserve the child's face while transforming them into the hero of each adventure.</p>
+
+            <table>
+                <tr>
+                    <th>Theme</th>
+                    <th>Scene Description</th>
+                    <th>Key Elements</th>
+                </tr>
+                <tr>
+                    <td><strong>🦴 Fossil Hunter</strong></td>
+                    <td>Excavating dinosaur bones in a desert canyon</td>
+                    <td>Safari hat, brush, partially exposed skeleton, dusty environment</td>
+                </tr>
+                <tr>
+                    <td><strong>🦕 Dino Whisperer</strong></td>
+                    <td>Befriending a gentle brachiosaurus in a lush valley</td>
+                    <td>Giant friendly dinosaur, tropical plants, soft lighting</td>
+                </tr>
+                <tr>
+                    <td><strong>🧭 Expedition Leader</strong></td>
+                    <td>Leading a team through jungle ruins</td>
+                    <td>Explorer gear, ancient temple, team in background, adventure vibes</td>
+                </tr>
+                <tr>
+                    <td><strong>🌋 Volcano Explorer</strong></td>
+                    <td>Observing pterodactyls near an active volcano</td>
+                    <td>Volcanic landscape, flying reptiles, dramatic orange sky</td>
+                </tr>
+                <tr>
+                    <td><strong>🦖 T-Rex Encounter</strong></td>
+                    <td>Face-to-face with a friendly T-Rex</td>
+                    <td>Massive T-Rex, jungle setting, "Kai's Expedition Team" sign</td>
+                </tr>
+            </table>
+
+            <h3>The Prompt Engineering</h3>
+
+            <p>Each theme uses a carefully crafted prompt that tells the AI exactly what to do. Here's a simplified version of the Fossil Hunter prompt:</p>
+
+            <div class="code-block">
+                <pre><span class="comment">// The prompt sent to the AI for each generation</span>
+
+<span class="keyword">SCENE:</span> <span class="string">Transform this photo into a prehistoric excavation site.
+The person becomes a young paleontologist discovering dinosaur fossils
+in a sun-drenched canyon.</span>
+
+<span class="keyword">CRITICAL - FACE PRESERVATION:</span>
+<span class="string">- Keep the exact face, skin tone, and expression
+- Maintain facial features precisely as shown
+- Only transform clothing, background, and context</span>
+
+<span class="keyword">SETTING:</span>
+<span class="string">- Desert canyon with exposed rock layers
+- Partially excavated T-Rex skeleton in foreground
+- Brushes, tools, and notebooks scattered around
+- Warm golden hour lighting</span>
+
+<span class="keyword">BIRTHDAY ELEMENTS:</span>
+<span class="string">- Include a wooden sign reading "Kai's Expedition Team - 7"
+- "Happy 7th Birthday Kai" on a hanging banner</span></pre>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">🎯 Why This Works</div>
+                <p>The prompt explicitly tells the AI to preserve the face while transforming everything else. The birthday elements are added as props in the scene, not as text overlay—making them feel natural and integrated.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TECHNICAL ARCHITECTURE -->
+    <div class="page page-break">
+        <div class="content">
+            <h2><span class="icon">⚙️</span> Technical Architecture</h2>
+
+            <p class="lead">Under the hood, the app uses modern web technologies and multiple AI providers for reliability. Here's how all the pieces fit together.</p>
+
+            <h3>The Tech Stack</h3>
+
+            <table>
+                <tr>
+                    <th>Layer</th>
+                    <th>Technology</th>
+                    <th>Why We Chose It</th>
+                </tr>
+                <tr>
+                    <td><strong>Frontend</strong></td>
+                    <td>React + Vite + Tailwind CSS</td>
+                    <td>Fast development, instant hot reload, utility-first styling</td>
+                </tr>
+                <tr>
+                    <td><strong>Hosting</strong></td>
+                    <td>Vercel</td>
+                    <td>Instant deploys, edge functions, built-in analytics</td>
+                </tr>
+                <tr>
+                    <td><strong>Database</strong></td>
+                    <td>Vercel KV (Redis)</td>
+                    <td>Simple key-value store, perfect for invite tokens</td>
+                </tr>
+                <tr>
+                    <td><strong>AI (Primary)</strong></td>
+                    <td>Google Gemini 2.5 Flash</td>
+                    <td>Best face preservation, fast generation</td>
+                </tr>
+                <tr>
+                    <td><strong>AI (Fallback)</strong></td>
+                    <td>Replicate FLUX 1.1 Pro</td>
+                    <td>Reliable backup, no quota limits</td>
+                </tr>
+                <tr>
+                    <td><strong>Animation</strong></td>
+                    <td>Framer Motion</td>
+                    <td>Smooth animations, gesture support</td>
+                </tr>
+            </table>
+
+            <h3>System Diagram</h3>
+
+            <div class="diagram">
+                <pre>
+┌─────────────────────────────────────────────────────────────┐
+│                     GUEST'S PHONE                            │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │              kai.slopgpt.com                         │    │
+│  │         React App (runs in browser)                  │    │
+│  └──────────────────────┬──────────────────────────────┘    │
+└─────────────────────────┼───────────────────────────────────┘
+                          │ HTTPS requests
+                          ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    VERCEL EDGE                               │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │  /api/       │  │  /api/       │  │  /api/       │       │
+│  │  validate    │  │  generate    │  │  increment   │       │
+│  │  -invite     │  │  -image      │  │  -usage      │       │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘       │
+└─────────┼─────────────────┼─────────────────┼───────────────┘
+          │                 │                 │
+          ▼                 ▼                 ▼
+    ┌──────────┐    ┌──────────────┐    ┌──────────┐
+    │ Vercel   │    │   Gemini     │    │ Vercel   │
+    │ KV       │    │     or       │    │ KV       │
+    │ (tokens) │    │   FLUX       │    │ (usage)  │
+    └──────────┘    └──────────────┘    └──────────┘
+                </pre>
+            </div>
+
+            <h3>The AI Fallback System</h3>
+
+            <p>This is the most critical part of the system. Here's how the AI generation works:</p>
+
+            <div class="flow-steps">
+                <div class="flow-step">Receive Photo + Theme</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step highlight">Try Gemini</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">Success?</div>
+            </div>
+
+            <div class="problem-solution">
+                <div class="solution">
+                    <h5>✅ If Gemini Works</h5>
+                    <p>Return the generated image immediately. Gemini typically takes 15-25 seconds and produces the best face preservation.</p>
+                </div>
+                <div class="problem">
+                    <h5>❌ If Gemini Fails</h5>
+                    <p>Automatically retry with FLUX. Common reasons: quota exceeded (30/day free tier), temporary API error, content filtering.</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <pre><span class="comment">// Simplified version of the fallback logic</span>
+
+<span class="keyword">async function</span> <span class="function">generateImage</span>(photo, theme) {
+  <span class="comment">// Try Gemini first (best quality)</span>
+  <span class="keyword">try</span> {
+    <span class="keyword">return await</span> <span class="function">callGemini</span>(photo, theme);
+  } <span class="keyword">catch</span> (error) {
+    console.log(<span class="string">'Gemini failed, trying FLUX...'</span>);
+  }
+
+  <span class="comment">// Fallback to FLUX (reliable backup)</span>
+  <span class="keyword">try</span> {
+    <span class="keyword">return await</span> <span class="function">callFlux</span>(photo, theme);
+  } <span class="keyword">catch</span> (error) {
+    <span class="keyword">throw new</span> Error(<span class="string">'All AI providers failed'</span>);
+  }
+}</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div class="page page-break">
+        <div class="content">
+            <h2><span class="icon">🎛️</span> The Admin Panel</h2>
+
+            <p class="lead">Hui needed a way to manage guests without any technical knowledge. The admin panel lets her create invites, add credits, and share links—all from her phone.</p>
+
+            <h3>Admin Capabilities</h3>
+
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">➕</div>
+                    <h5>Create Invites</h5>
+                    <p>Type a guest name, tap "Create". Instantly generates a unique link with 5 credits.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔋</div>
+                    <h5>Add Credits</h5>
+                    <p>Tap "+10" on any guest to add more generations. Toast notification confirms with option to send link.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📋</div>
+                    <h5>Copy & Share</h5>
+                    <p>One tap to copy link. WhatsApp integration for instant sharing with guests.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔓</div>
+                    <h5>Unlock Devices</h5>
+                    <p>If a guest's link gets "locked" to the wrong device, admin can unlock it instantly.</p>
+                </div>
+            </div>
+
+            <h3>The Invite Data Structure</h3>
+
+            <p>Each invite is stored in Vercel KV (a Redis database) with this structure:</p>
+
+            <div class="code-block">
+                <pre><span class="comment">// What we store for each invite</span>
+
+{
+  <span class="string">"id"</span>: <span class="string">"B9GGWa8swkrk"</span>,           <span class="comment">// Unique token</span>
+  <span class="string">"guest_name"</span>: <span class="string">"Uncle Frank"</span>,      <span class="comment">// Display name</span>
+  <span class="string">"max_uses"</span>: 15,                   <span class="comment">// Total credits allowed</span>
+  <span class="string">"current_uses"</span>: 3,               <span class="comment">// Credits used so far</span>
+  <span class="string">"is_locked"</span>: <span class="keyword">false</span>,              <span class="comment">// Device lock status</span>
+  <span class="string">"device_fingerprint"</span>: <span class="string">"abc123"</span>,  <span class="comment">// First device that used it</span>
+  <span class="string">"created_at"</span>: <span class="string">"2026-01-19..."</span>,   <span class="comment">// When invite was created</span>
+  <span class="string">"url"</span>: <span class="string">"https://kai.slopgpt.com/i/B9GGWa8swkrk"</span>
+}</pre>
+            </div>
+
+            <h3>Device Fingerprinting (Soft Lock)</h3>
+
+            <p>To prevent guests from sharing links widely, we use "soft" device fingerprinting:</p>
+
+            <ol>
+                <li><strong>First use:</strong> We record a fingerprint of the device (browser + screen + timezone)</li>
+                <li><strong>Subsequent uses:</strong> If a different device tries to use the link, it shows "locked"</li>
+                <li><strong>Admin override:</strong> Hui can unlock any invite from the admin panel</li>
+            </ol>
+
+            <div class="callout">
+                <div class="callout-title">🔐 Why "Soft" Lock?</div>
+                <p>We don't want to frustrate guests who switch phones or browsers. The lock is just a gentle deterrent against sharing. If someone really wants to share their link with a friend, Hui can add more credits instead of fighting it.</p>
+            </div>
+
+            <h3>Admin Access</h3>
+
+            <p>The admin panel is protected by a simple username/password. No complex authentication needed for a private family event:</p>
+
+            <ul>
+                <li><strong>URL:</strong> kai.slopgpt.com/admin</li>
+                <li><strong>Credentials:</strong> Shared privately with Hui</li>
+                <li><strong>Booth Mode:</strong> /admin/booth — unlimited generations for testing or a physical booth setup</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CHALLENGES & SOLUTIONS -->
+    <div class="page page-break">
+        <div class="content">
+            <h2><span class="icon">🔧</span> Challenges & Solutions</h2>
+
+            <p class="lead">Every project hits unexpected problems. Here are the biggest challenges we faced and how we solved them.</p>
+
+            <h3>Challenge 1: Gemini Quota Limits</h3>
+
+            <div class="problem-solution">
+                <div class="problem">
+                    <h5>❌ The Problem</h5>
+                    <p>Gemini's free tier only allows 30 image generations per day. A party with 30 guests, each trying 2-3 themes, would hit the limit in the first hour.</p>
+                </div>
+                <div class="solution">
+                    <h5>✅ The Solution</h5>
+                    <p>Added Replicate FLUX as automatic fallback. When Gemini fails, the system seamlessly switches to FLUX—guests never notice. FLUX costs ~$0.04/generation but has no daily limit.</p>
+                </div>
+            </div>
+
+            <h3>Challenge 2: Mobile Safari Scroll Issues</h3>
+
+            <div class="problem-solution">
+                <div class="problem">
+                    <h5>❌ The Problem</h5>
+                    <p>The consent modal used nested scrollable containers. On iOS Safari, users couldn't scroll to read the full terms. The checkbox was also too small to tap reliably.</p>
+                </div>
+                <div class="solution">
+                    <h5>✅ The Solution</h5>
+                    <p>Rewrote the modal as a full-page layout with sticky header/footer. Made the entire checkbox row tappable (not just the tiny box). Tested on real iPhones before deploying.</p>
+                </div>
+            </div>
+
+            <h3>Challenge 3: iOS Image Saving</h3>
+
+            <div class="problem-solution">
+                <div class="problem">
+                    <h5>❌ The Problem</h5>
+                    <p>The standard web "download" approach doesn't work on iOS Safari. Clicking a download link would open a new tab with the image, then... nothing. Users couldn't save it.</p>
+                </div>
+                <div class="solution">
+                    <h5>✅ The Solution</h5>
+                    <p>Created a two-step approach: First, try the Web Share API (opens iOS share sheet). If that fails, show a full-screen modal with the image and clear instructions: "Long press the image, then tap 'Add to Photos'."</p>
+                </div>
+            </div>
+
+            <h3>Challenge 4: Face Preservation Quality</h3>
+
+            <div class="problem-solution">
+                <div class="problem">
+                    <h5>❌ The Problem</h5>
+                    <p>Early tests showed the AI sometimes "smoothing out" children's faces or making them look older. Parents want their kid to look like their kid.</p>
+                </div>
+                <div class="solution">
+                    <h5>✅ The Solution</h5>
+                    <p>Added explicit instructions in every prompt: "CRITICAL: Preserve the exact face, skin tone, and expression. Maintain facial features precisely as shown." This dramatically improved face accuracy.</p>
+                </div>
+            </div>
+
+            <h3>Challenge 5: Admin UX for Non-Technical User</h3>
+
+            <div class="problem-solution">
+                <div class="problem">
+                    <h5>❌ The Problem</h5>
+                    <p>Initial admin panel had too many buttons. The "+5 credits" button gave no feedback. WhatsApp sharing required multiple taps.</p>
+                </div>
+                <div class="solution">
+                    <h5>✅ The Solution</h5>
+                    <p>Simplified to three actions per guest: Copy, +10, Edit. Added toast notifications that confirm actions AND offer to send the link immediately. One tap to copy, two taps to WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONNECTION TO SLOPGPT -->
+    <div class="page page-break">
+        <div class="content">
+            <h2><span class="icon">🔗</span> Connection to SlopGPT</h2>
+
+            <p class="lead">Kai's Adventure isn't a standalone project—it's a proof-of-concept for SlopGPT's event photo experience service. Here's how the pieces connect.</p>
+
+            <h3>What is SlopGPT?</h3>
+
+            <p><strong>SlopGPT</strong> (slopgpt.com) is a service that creates custom AI photo experiences for events. Instead of generic photo booths with props and filters, SlopGPT delivers:</p>
+
+            <ul>
+                <li><strong>Custom themes</strong> designed for each event (not off-the-shelf templates)</li>
+                <li><strong>Real AI transformation</strong> (not just face filters or stickers)</li>
+                <li><strong>White-glove delivery</strong> (we build it, client just shares links)</li>
+                <li><strong>Admin control</strong> (manage guests, credits, and analytics)</li>
+            </ul>
+
+            <h3>How Kai's Adventure Validates the Business</h3>
+
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h5>Technical Feasibility</h5>
+                    <p>We can build a complete, polished experience in 4 days with ~$15 in API costs.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h5>User Experience</h5>
+                    <p>Non-technical users (party guests) can successfully use it on their phones.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h5>Admin Experience</h5>
+                    <p>Non-technical admin (Hui) can manage guests and credits without support.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h5>Scalability</h5>
+                    <p>The architecture handles 200+ generations reliably with automatic fallbacks.</p>
+                </div>
+            </div>
+
+            <h3>Reusable Components</h3>
+
+            <p>Everything built for Kai's Adventure can be reused for future SlopGPT clients:</p>
+
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Reuse Level</th>
+                    <th>Customization Needed</th>
+                </tr>
+                <tr>
+                    <td>Invite System</td>
+                    <td>100%</td>
+                    <td>None—works as-is</td>
+                </tr>
+                <tr>
+                    <td>Admin Panel</td>
+                    <td>100%</td>
+                    <td>None—works as-is</td>
+                </tr>
+                <tr>
+                    <td>AI Generation Pipeline</td>
+                    <td>100%</td>
+                    <td>Just change prompts</td>
+                </tr>
+                <tr>
+                    <td>Consent Modal</td>
+                    <td>95%</td>
+                    <td>Update branding/text</td>
+                </tr>
+                <tr>
+                    <td>Theme Selector</td>
+                    <td>90%</td>
+                    <td>Swap images and names</td>
+                </tr>
+                <tr>
+                    <td>Splash Screen</td>
+                    <td>80%</td>
+                    <td>Update theme and copy</td>
+                </tr>
+                <tr>
+                    <td>Visual Design</td>
+                    <td>0%</td>
+                    <td>Completely custom per event</td>
+                </tr>
+            </table>
+
+            <div class="callout">
+                <div class="callout-title">💰 Business Implication</div>
+                <p>With 80%+ of code reusable, new events can be delivered in 1-2 days instead of 4. At $500-2,000 per event with ~$50 in costs, gross margins exceed 90%.</p>
+            </div>
+
+            <h3>The SlopGPT Ecosystem</h3>
+
+            <div class="diagram">
+                <pre>
+                        ┌─────────────────────┐
+                        │     SLOPGPT.COM     │
+                        │   (Landing Page)    │
+                        │   Lead Capture +    │
+                        │   AI Chat Qualifier │
+                        └──────────┬──────────┘
+                                   │
+                    ┌──────────────┼──────────────┐
+                    ▼              ▼              ▼
+            ┌───────────┐  ┌───────────┐  ┌───────────┐
+            │  Kai's    │  │  Wedding  │  │ Corporate │
+            │ Adventure │  │  Client   │  │  Client   │
+            │ (Kids)    │  │  (TBD)    │  │  (TBD)    │
+            └───────────┘  └───────────┘  └───────────┘
+                    │              │              │
+                    └──────────────┴──────────────┘
+                                   │
+                        ┌──────────┴──────────┐
+                        │   SHARED INFRA      │
+                        │ • Vercel Hosting    │
+                        │ • AI Providers      │
+                        │ • Admin Components  │
+                        └─────────────────────┘
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- FINAL RESULTS -->
+    <div class="page page-break">
+        <div class="content">
+            <h2><span class="icon">🏆</span> Final Results</h2>
+
+            <p class="lead">Kai's Adventure is live and ready for the birthday party. Here's what we delivered.</p>
+
+            <h3>Delivery Summary</h3>
+
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="number">5</div>
+                    <div class="label">Themed Scenes</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">∞</div>
+                    <div class="label">Guests Supported</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">95%</div>
+                    <div class="label">Generation Success</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">~25s</div>
+                    <div class="label">Avg Generation Time</div>
+                </div>
+            </div>
+
+            <h3>What the Client Gets</h3>
+
+            <ul>
+                <li><strong>Custom URL:</strong> kai.slopgpt.com (memorable, branded)</li>
+                <li><strong>Admin Dashboard:</strong> Full control over guests and credits</li>
+                <li><strong>5 Unique Scenes:</strong> Each professionally designed for the dinosaur theme</li>
+                <li><strong>Mobile-Optimized:</strong> Works on any phone, no app download</li>
+                <li><strong>Privacy-First:</strong> No photos stored, GDPR/CCPA compliant by design</li>
+                <li><strong>Reliable AI:</strong> Dual-provider system ensures consistent delivery</li>
+            </ul>
+
+            <h3>Cost Breakdown</h3>
+
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Cost</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td>Gemini API</td>
+                    <td>$0</td>
+                    <td>Free tier (30 req/day)</td>
+                </tr>
+                <tr>
+                    <td>Replicate FLUX (fallback)</td>
+                    <td>~$8-12</td>
+                    <td>$0.04 × ~200 generations</td>
+                </tr>
+                <tr>
+                    <td>Vercel Hosting</td>
+                    <td>$0</td>
+                    <td>Included in Pro plan</td>
+                </tr>
+                <tr>
+                    <td>Vercel KV Database</td>
+                    <td>$0</td>
+                    <td>Within free tier limits</td>
+                </tr>
+                <tr>
+                    <td>Domain</td>
+                    <td>$0</td>
+                    <td>Subdomain of slopgpt.com</td>
+                </tr>
+                <tr>
+                    <td><strong>Total API/Infra</strong></td>
+                    <td><strong>~$12</strong></td>
+                    <td>For entire event</td>
+                </tr>
+            </table>
+
+            <h3>Files Delivered</h3>
+
+            <div class="code-block">
+                <pre><span class="comment"># Project Structure</span>
+
+kai-bday/
+├── api/                    <span class="comment"># Serverless functions</span>
+│   ├── generate-image.ts   <span class="comment"># AI generation with fallback</span>
+│   ├── validate-invite.ts  <span class="comment"># Token validation</span>
+│   ├── increment-usage.ts  <span class="comment"># Credit tracking</span>
+│   └── admin-*.ts          <span class="comment"># Admin operations</span>
+├── components/             <span class="comment"># React components</span>
+│   ├── Admin.tsx           <span class="comment"># Admin dashboard</span>
+│   ├── ConsentModal.tsx    <span class="comment"># Terms acceptance</span>
+│   ├── InviteGate.tsx      <span class="comment"># Access control</span>
+│   ├── PolaroidCard.tsx    <span class="comment"># Result display</span>
+│   ├── SaveModal.tsx       <span class="comment"># Mobile save helper</span>
+│   ├── ThemeSelector.tsx   <span class="comment"># Scene picker</span>
+│   └── WelcomeSplash.tsx   <span class="comment"># Intro screen</span>
+├── services/               <span class="comment"># API clients</span>
+│   └── imageService.ts     <span class="comment"># Generation wrapper</span>
+├── App.tsx                 <span class="comment"># Main application</span>
+└── CASE-STUDY.md           <span class="comment"># This document</span>
+
+<span class="string">32 files | 5,500 lines | 34 commits</span></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSONS LEARNED -->
+    <div class="page page-break">
+        <div class="content">
+            <h2><span class="icon">📚</span> Lessons Learned</h2>
+
+            <p class="lead">Every project teaches something. Here are the key takeaways from building Kai's Adventure.</p>
+
+            <h3>Technical Lessons</h3>
+
+            <div class="component-list">
+                <div class="component">
+                    <div class="component-icon">📱</div>
+                    <div class="component-content">
+                        <h5>Test on Real Devices</h5>
+                        <p>Simulators lie. The scroll issues and save problems only appeared on actual iPhones. Always test on the devices your users will actually use.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">🔄</div>
+                    <div class="component-content">
+                        <h5>Build Fallbacks from Day One</h5>
+                        <p>We added FLUX fallback on Day 2 after hitting Gemini's quota. Should have designed for multiple providers from the start. AI APIs are unpredictable.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">💾</div>
+                    <div class="component-content">
+                        <h5>Mobile Save is Hard</h5>
+                        <p>There's no universal "download file" on mobile browsers. Plan for Share API + long-press fallback from the beginning.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">📝</div>
+                    <div class="component-content">
+                        <h5>Prompts Are Everything</h5>
+                        <p>The difference between "bad AI output" and "magical result" is prompt engineering. Spend time on detailed, explicit instructions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Product Lessons</h3>
+
+            <div class="component-list">
+                <div class="component">
+                    <div class="component-icon">⏱️</div>
+                    <div class="component-content">
+                        <h5>30-Second Rule</h5>
+                        <p>Users at events have minimal patience. Every extra step, every confusing button, loses people. Ruthlessly simplify.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">🎛️</div>
+                    <div class="component-content">
+                        <h5>Admin UX Matters</h5>
+                        <p>The person managing the event isn't technical. Toast notifications, one-tap actions, and clear feedback make the difference between "this is easy" and "I need help".</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">🔒</div>
+                    <div class="component-content">
+                        <h5>Soft Restrictions Beat Hard Locks</h5>
+                        <p>Device fingerprinting is a deterrent, not a wall. If someone wants to share their link, let the admin add more credits instead of fighting it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Business Lessons</h3>
+
+            <div class="component-list">
+                <div class="component">
+                    <div class="component-icon">💵</div>
+                    <div class="component-content">
+                        <h5>AI Costs Are Negligible</h5>
+                        <p>At $0.04/generation, API costs are noise. The real cost is build time. Invest in reusable components to reduce future delivery time.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-icon">📸</div>
+                    <div class="component-content">
+                        <h5>Every Photo is Marketing</h5>
+                        <p>Guests share their generated photos. Include subtle branding (the "Kai's Expedition Team" sign) that travels with every share.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-logo">SlopGPT</div>
+            <p>Bespoke AI Photo Experiences</p>
+            <div class="footer-links">
+                <p>
+                    Live Demo: <a href="https://kai.slopgpt.com">kai.slopgpt.com</a><br>
+                    Service: <a href="https://slopgpt.com">slopgpt.com</a><br>
+                    Contact: hello@slopgpt.com
+                </p>
+                <p style="margin-top: 20px; opacity: 0.7;">
+                    A Softworks Trading Company Product<br>
+                    Case Study • January 2026
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
