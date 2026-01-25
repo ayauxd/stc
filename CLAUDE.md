@@ -29,10 +29,11 @@
 
 | Issue | Occurrences | Fix |
 |-------|-------------|-----|
-| Forgot to update README after case study changes | 3x in one session | Case study + README = atomic commit |
+| Forgot to update README after changes | 4x in one session | ALL READMEs (stc/, case-studies/) = atomic commit |
 | Missed `encore` project (claimed "not found") | 1x | Always `ls -la ~/[project]` before claiming missing |
 | Referenced `softworks-n8n` (doesn't exist) | Multiple | Verify actual folder names exist |
 | Put case studies in sftwrks instead of stc | 1x | Read instructions carefully |
+| Main stc/README.md was outdated | 1x | Update main README when structure changes |
 
 ---
 
