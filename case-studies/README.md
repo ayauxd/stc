@@ -65,7 +65,7 @@ case-studies/
 #### Infrastructure
 | Case Study | Date | Outcome |
 |------------|------|---------|
-| [Ecosystem Audit & Hierarchy Cleanup](internal/infrastructure/CaseStudy-EcosystemAudit-2026-01-24.md) | Jan 2026 | 10 business units, /ecosystem-audit skill, persistent context |
+| [Ecosystem Audit & Hierarchy Cleanup](internal/infrastructure/CaseStudy-EcosystemAudit-2026-01-24.md) | Jan 2026 | 10 business units, STRUCTURE.md, live documentation protocol |
 | [Task System + Skills Ecosystem](internal/infrastructure/CaseStudy-TaskSystem-SkillsEcosystem-2026-01-24.md) | Jan 2026 | Tasks analysis, skills.sh, /audit consolidation |
 | [Launchpad Project Factory](internal/infrastructure/CaseStudy-Launchpad-ProjectFactory.md) | Jan 2026 | 20 skills, security guardrails |
 | [Launchpad Audit](internal/infrastructure/Launchpad_Audit_Case_Study.md) | Jan 2026 | Project cleanup |
