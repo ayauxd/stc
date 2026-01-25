@@ -94,6 +94,23 @@ Created `~/.claude/FREDERICK_CONTEXT.md` with:
 - Red flags to avoid
 - Project portfolio summary
 
+### Phase 6: Live Documentation System
+
+Created `~/stc/STRUCTURE.md` for real-time org hierarchy visibility:
+- Visual tree of all 10 business units
+- Active / Dormant / Planned categorization
+- Client listing under Softworks
+- **Change Log** for audit trail
+
+Established **Update Protocol** (added to CLAUDE.md):
+1. Make structural change
+2. Update `STRUCTURE.md` immediately
+3. Update `ecosystem.yaml` if business unit affected
+4. Commit both files together
+5. Add entry to Change Log
+
+**Key insight:** Documentation is part of the system, not an afterthought. Immediate commits = always-accurate structure.
+
 ---
 
 ## Key Files Updated
@@ -102,7 +119,8 @@ Created `~/.claude/FREDERICK_CONTEXT.md` with:
 |------|---------|
 | `~/launchpad/ecosystem.yaml` | Added 6 new business units, 5 clients, fixed repo names |
 | `~/.claude/CLAUDE.md` | Updated business units, added mistake log |
-| `~/stc/CLAUDE.md` | Added clients table, all business units |
+| `~/stc/CLAUDE.md` | Added clients table, update protocol, all business units |
+| `~/stc/STRUCTURE.md` | NEW - Visual org hierarchy with change log |
 | `~/launchpad/CLAUDE.md` | Fixed softworks-n8n → softworks-clients |
 | `~/stc/ECOSYSTEM_AUDIT_2026-01-24.md` | Full audit report |
 | `~/.claude/FREDERICK_CONTEXT.md` | NEW - Persistent working context |
@@ -157,6 +175,8 @@ Created `~/.claude/FREDERICK_CONTEXT.md` with:
 | Clients documented | 0 | 5 |
 | Audit skill | None | `/ecosystem-audit` |
 | Persistent context | None | `FREDERICK_CONTEXT.md` |
+| Live structure doc | None | `STRUCTURE.md` |
+| Update protocol | None | Commit after every change |
 
 ---
 
