@@ -155,6 +155,11 @@ Established **Update Protocol** (added to CLAUDE.md):
    - User-provided working context (philosophy, patterns) dramatically improves alignment
    - Save to persistent location for all sessions
 
+5. **README must be updated with case study changes**
+   - Repeatedly forgot to update `case-studies/README.md` after updating case study files
+   - User had to remind multiple times in same session
+   - **Fix:** Add to Update Protocol - case study file + README = atomic unit
+
 ---
 
 ## Donovan Protocol Application

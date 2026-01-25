@@ -18,6 +18,22 @@
 3. Commit both files with descriptive message
 4. Add entry to STRUCTURE.md Change Log
 
+**After ANY case study change:**
+1. Update the case study file
+2. Update `case-studies/README.md` (index + stats)
+3. Commit BOTH files together — they are an atomic unit
+
+---
+
+## Session Challenges (Mistakes to Learn From)
+
+| Issue | Occurrences | Fix |
+|-------|-------------|-----|
+| Forgot to update README after case study changes | 3x in one session | Case study + README = atomic commit |
+| Missed `encore` project (claimed "not found") | 1x | Always `ls -la ~/[project]` before claiming missing |
+| Referenced `softworks-n8n` (doesn't exist) | Multiple | Verify actual folder names exist |
+| Put case studies in sftwrks instead of stc | 1x | Read instructions carefully |
+
 ---
 
 ## Business Units
