@@ -2,6 +2,24 @@
 
 **Parent holding company** for Frederick Aya's business ventures.
 
+## Quick Reference
+
+| Document | Purpose |
+|----------|---------|
+| `STRUCTURE.md` | Visual org hierarchy (always current) |
+| `case-studies/README.md` | All case studies by business unit |
+| `~/launchpad/ecosystem.yaml` | Full project registry |
+
+## Update Protocol
+
+**After ANY structural change (folder created, project moved, client added):**
+1. Update `STRUCTURE.md` immediately
+2. Update `ecosystem.yaml` if business unit affected
+3. Commit both files with descriptive message
+4. Add entry to STRUCTURE.md Change Log
+
+---
+
 ## Business Units
 
 | Unit | Domain | Focus | Status |
@@ -53,7 +71,7 @@ case-studies/
     └── operations/         # Troubleshooting, diagnostics
 ```
 
-**Total: 13 case studies**
+**Total: 14 case studies**
 
 ## Related Repos
 
@@ -61,7 +79,7 @@ case-studies/
 |------|---------|
 | `launchpad` | Project factory, ecosystem monitoring |
 | `sftwrks` | Softworks AI consulting website |
-| `softworks-n8n` | Automation workflows, client work |
+| `softworks-clients` | Automation workflows, client work |
 
 ## Commands
 
