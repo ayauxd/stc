@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receipt - Softworks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fff;
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+    .header {
+      background: #0A1628;
+      color: #fff;
+      padding: 24px 32px;
+    }
+    .header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .logo {
+      font-family: 'Nunito', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .legal-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #94A3B8;
+      margin-top: 4px;
+    }
+    .doc-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: #00D4FF;
+      text-align: right;
+    }
+    .status-paid {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .body { max-width: 800px; margin: 0 auto; padding: 32px; }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94A3B8;
+      margin-bottom: 4px;
+    }
+    .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .value-link { color: #0891B2; }
+    .client-info { text-align: right; }
+    .client-info .name { font-weight: 700; font-size: 14px; }
+    .client-info .company { color: #475569; font-size: 14px; }
+    .client-info .email { font-size: 12px; color: #64748B; margin-top: 4px; }
+    .amount-box {
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      padding: 24px;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .amount-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #059669;
+      margin-bottom: 8px;
+    }
+    .amount-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 36px;
+      font-weight: 700;
+      color: #047857;
+    }
+    .amount-method {
+      font-size: 14px;
+      color: #059669;
+      margin-top: 8px;
+    }
+    .table {
+      width: 100%;
+      border: 1px solid #E2E8F0;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+    }
+    .table th {
+      background: #F8FAFC;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748B;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .table th.right { text-align: right; }
+    .table td {
+      padding: 16px;
+      font-size: 14px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .table td.mono { font-family: 'JetBrains Mono', monospace; color: #475569; }
+    .table td.right { text-align: right; }
+    .table td.bold { font-weight: 600; }
+    .totals { display: flex; justify-content: flex-end; margin-bottom: 40px; }
+    .totals-box { width: 256px; }
+    .totals-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .totals-row .label { color: #64748B; margin-bottom: 0; }
+    .totals-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 16px;
+      margin: 8px -16px 0;
+      background: #059669;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .totals-total .label { font-family: 'Courier Prime', monospace; color: #fff; }
+    .totals-total .value { font-family: 'JetBrains Mono', monospace; }
+    .note-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      padding: 16px;
+      margin-bottom: 32px;
+    }
+    .note-text { font-size: 12px; color: #475569; }
+    .thank-you {
+      text-align: center;
+      padding: 32px 0;
+      border-top: 1px solid #E2E8F0;
+    }
+    .thank-you-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 18px;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+    .thank-you-text {
+      font-size: 14px;
+      color: #64748B;
+    }
+    .footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #E2E8F0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #94A3B8;
+    }
+    .footer-contact { font-family: 'JetBrains Mono', monospace; }
+    .footer-brand { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #00D4FF; }
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .header { background: #0A1628 !important; }
+    }
+    [contenteditable] { outline: none; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-inner">
+      <div>
+        <div class="logo">Softworks</div>
+        <div class="legal-name">Softworks Trading Company</div>
+      </div>
+      <div>
+        <div class="doc-title">RECEIPT</div>
+        <div class="status-paid">Payment Received</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="info-grid">
+      <div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <div class="label">Receipt No.</div>
+            <div class="value" contenteditable>RCP-2026-001</div>
+          </div>
+          <div>
+            <div class="label">Payment Date</div>
+            <div class="value" contenteditable>2026-01-26</div>
+          </div>
+          <div style="grid-column: span 2;">
+            <div class="label">Invoice Reference</div>
+            <div class="value value-link" contenteditable>INV-2026-001</div>
+          </div>
+        </div>
+      </div>
+      <div class="client-info">
+        <div class="label">Received From</div>
+        <div class="name" contenteditable>Client Name</div>
+        <div class="company" contenteditable>Company Name</div>
+        <div class="email" contenteditable>email@example.com</div>
+      </div>
+    </div>
+
+    <div class="amount-box">
+      <div class="amount-label">Amount Paid</div>
+      <div class="amount-value" contenteditable>$8,170.00</div>
+      <div class="amount-method">via <span contenteditable>Bank Transfer</span></div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Description</th>
+          <th class="right" style="width: 15%;">Qty</th>
+          <th class="right" style="width: 17.5%;">Rate</th>
+          <th class="right" style="width: 17.5%;">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td contenteditable>AI Strategy Consultation</td>
+          <td class="mono right" contenteditable>8</td>
+          <td class="mono right" contenteditable>$250.00</td>
+          <td class="mono right bold">$2,000.00</td>
+        </tr>
+        <tr>
+          <td contenteditable>Workflow Automation Implementation</td>
+          <td class="mono right" contenteditable>1</td>
+          <td class="mono right" contenteditable>$5,000.00</td>
+          <td class="mono right bold">$5,000.00</td>
+        </tr>
+        <tr>
+          <td contenteditable>Training & Documentation</td>
+          <td class="mono right" contenteditable>4</td>
+          <td class="mono right" contenteditable>$150.00</td>
+          <td class="mono right bold">$600.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div class="totals-box">
+        <div class="totals-row">
+          <span class="label">Subtotal</span>
+          <span class="value" contenteditable>$7,600.00</span>
+        </div>
+        <div class="totals-row">
+          <span class="label">VAT (7.5%)</span>
+          <span class="value" contenteditable>$570.00</span>
+        </div>
+        <div class="totals-total">
+          <span class="label">Total Paid</span>
+          <span class="value" contenteditable>$8,170.00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <div class="label">Notes</div>
+      <div class="note-text" contenteditable>Payment received with thanks. Project will commence as scheduled.</div>
+    </div>
+
+    <div class="thank-you">
+      <div class="thank-you-title">Thank you for your business!</div>
+      <div class="thank-you-text">This receipt confirms payment has been received in full.</div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-contact">
+        <span>fred@sftwrks.com</span> • <span>sftwrks.com</span>
+      </div>
+      <div class="footer-brand">SOFTWORKS</div>
+    </div>
+  </div>
+</body>
+</html>

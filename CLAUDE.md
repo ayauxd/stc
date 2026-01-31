@@ -76,19 +76,19 @@ All case studies organized by business unit: `/case-studies/README.md`
 
 ```
 case-studies/
-├── softworks/              # AI Consulting (6 case studies)
-│   ├── clients/            # Iroko Health, SlopGPT, Kai's Adventure
-│   ├── products/           # Chief of Staff voice assistant
+├── softworks/              # AI Consulting (8 case studies)
+│   ├── clients/            # Iroko Health, SlopGPT, Kai's Adventure, Client Intake Verification
+│   ├── products/           # Chief of Staff voice assistant, Service Catalog & Pricing
 │   └── website/            # sftwrks.com development
 ├── pitch-film-studios/     # Media Production (1 case study)
 │   └── tools/              # PFS Media Gen
-└── internal/               # Cross-Business Ops (6 case studies)
-    ├── infrastructure/     # Launchpad, Task system
+└── internal/               # Cross-Business Ops (9 case studies)
+    ├── infrastructure/     # Launchpad, Task system, Chief of Staff Router, Ripple Memory
     ├── devtools/           # Ralph Loop
     └── operations/         # Troubleshooting, diagnostics
 ```
 
-**Total: 14 case studies**
+**Total: 18 case studies**
 
 ## Related Repos
 

@@ -37,11 +37,13 @@ case-studies/
 | [Iroko Health Proposal](softworks/clients/Iroko-Health-Proposal.md) | Jan 2026 | AI integration proposal |
 | [Kai's Adventure](softworks/clients/Kais-Adventure-Case-Study.html) | Jan 2026 | Interactive photo booth |
 | [SlopGPT Analysis](softworks/clients/SlopGPT-Business-Breakdown.pdf) | Jan 2026 | Product strategy |
+| [Client Intake Verification](softworks/clients/CaseStudy-ClientIntake-Verification-2026-01-28.md) | Jan 2026 | Website verification before building deliverables |
 
 #### Products
 | Case Study | Date | Outcome |
 |------------|------|---------|
 | [Chief of Staff Voice Assistant](softworks/products/CaseStudy-ChiefOfStaff-VoiceAssistant.md) | Jan 2026 | Three-layer architecture with offline fallbacks |
+| [Service Catalog & Pricing](softworks/products/CaseStudy-ServiceCatalog-Pricing-2026-01-28.md) | Jan 2026 | Three-tier value-based pricing with Training Assistant |
 
 #### Website
 | Case Study | Date | Outcome |
@@ -65,6 +67,8 @@ case-studies/
 #### Infrastructure
 | Case Study | Date | Outcome |
 |------------|------|---------|
+| [Chief of Staff Router](internal/infrastructure/CaseStudy-ChiefOfStaff-Router-2026-01-28.md) | Jan 2026 | Capture → Route → Journal system with YAML config |
+| [Ripple Memory System](internal/infrastructure/CaseStudy-RippleMemory-LocalLLMSearch-2026-01-29.md) | Jan 2026 | Local LLM search vs Supermemory, RLM/Ripple architecture |
 | [Ecosystem Audit & Hierarchy Cleanup](internal/infrastructure/CaseStudy-EcosystemAudit-2026-01-24.md) | Jan 2026 | 10 business units, STRUCTURE.md, live documentation protocol |
 | [Task System + Skills Ecosystem](internal/infrastructure/CaseStudy-TaskSystem-SkillsEcosystem-2026-01-24.md) | Jan 2026 | Tasks analysis, skills.sh, /audit consolidation |
 | [Launchpad Project Factory](internal/infrastructure/CaseStudy-Launchpad-ProjectFactory.md) | Jan 2026 | 20 skills, security guardrails |
@@ -87,10 +91,10 @@ case-studies/
 
 | Business Unit | Case Studies |
 |---------------|--------------|
-| Softworks | 6 |
+| Softworks | 8 |
 | Pitch Film Studios | 1 |
-| Internal | 7 |
-| **Total** | **14** |
+| Internal | 9 |
+| **Total** | **18** |
 
 ---
 
@@ -157,4 +161,4 @@ case-studies/
 
 ---
 
-*Last updated: January 24, 2026*
+*Last updated: January 29, 2026*

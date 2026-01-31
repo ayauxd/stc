@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statement of Work - Softworks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fff;
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .header {
+      background: #0A1628;
+      color: #fff;
+      padding: 32px;
+    }
+    .header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .logo {
+      font-family: 'Nunito', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .legal-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #94A3B8;
+      margin-top: 4px;
+    }
+    .doc-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 20px;
+      font-weight: 700;
+      color: #00D4FF;
+      text-align: right;
+    }
+    .doc-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #94A3B8;
+      margin-top: 4px;
+    }
+    .project-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .info-bar {
+      background: #F1F5F9;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 32px;
+    }
+    .info-bar-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      gap: 32px;
+    }
+    .info-item .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748B;
+    }
+    .info-item .value { font-weight: 600; }
+    .info-item .value-highlight { color: #0891B2; font-weight: 700; }
+    .body { max-width: 800px; margin: 0 auto; padding: 40px 32px; }
+    .section { margin-bottom: 40px; }
+    .section-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0A1628;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #0A1628;
+      margin-bottom: 16px;
+    }
+    .section-text { color: #475569; line-height: 1.7; }
+    .scope-group { margin-bottom: 24px; }
+    .scope-group-title { font-weight: 700; margin-bottom: 8px; }
+    .scope-list {
+      list-style: none;
+      margin-left: 16px;
+    }
+    .scope-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+      color: #475569;
+    }
+    .scope-list li::before { content: "•"; color: #00D4FF; font-weight: bold; }
+    .out-of-scope {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      padding: 16px;
+    }
+    .out-of-scope-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748B;
+      margin-bottom: 12px;
+    }
+    .out-of-scope-list {
+      list-style: none;
+    }
+    .out-of-scope-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+      color: #64748B;
+    }
+    .out-of-scope-list li::before { content: "✕"; color: #94A3B8; }
+    .table {
+      width: 100%;
+      border: 1px solid #E2E8F0;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+    }
+    .table th {
+      background: #F8FAFC;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748B;
+      padding: 10px 16px;
+      text-align: left;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .table th.right { text-align: right; }
+    .table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .table td.mono { font-family: 'JetBrains Mono', monospace; color: #475569; }
+    .table td.right { text-align: right; }
+    .table td.bold { font-weight: 600; }
+    .table-total td {
+      background: #0A1628;
+      color: #fff;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .table-total td.label { font-family: 'Courier Prime', monospace; }
+    .table-total td.value { font-family: 'JetBrains Mono', monospace; color: #00D4FF; }
+    .deliverable-row { display: flex; align-items: center; gap: 8px; }
+    .deliverable-num {
+      width: 20px;
+      height: 20px;
+      background: #0A1628;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .milestone-item {
+      display: flex;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #F1F5F9;
+      margin-bottom: 16px;
+    }
+    .milestone-item:last-child { border-bottom: none; margin-bottom: 0; }
+    .milestone-date {
+      width: 100px;
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: #0891B2;
+    }
+    .milestone-content {}
+    .milestone-name { font-weight: 700; margin-bottom: 4px; }
+    .milestone-desc { font-size: 12px; color: #64748B; }
+    .assumption-list, .criteria-list {
+      list-style: none;
+    }
+    .assumption-list li, .criteria-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      color: #475569;
+    }
+    .assumption-list li .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #00D4FF;
+    }
+    .criteria-list li::before { content: "✓"; color: #10B981; font-weight: bold; }
+    .signatures {
+      padding-top: 32px;
+      border-top: 2px solid #0A1628;
+    }
+    .signatures-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0A1628;
+      margin-bottom: 24px;
+    }
+    .signatures-intro {
+      color: #64748B;
+      margin-bottom: 32px;
+    }
+    .sig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .sig-party-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748B;
+      margin-bottom: 16px;
+    }
+    .sig-line {
+      border-bottom: 1px solid #CBD5E1;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      min-height: 40px;
+    }
+    .sig-label { font-size: 10px; color: #94A3B8; }
+    .footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #E2E8F0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #94A3B8;
+    }
+    .footer-contact { font-family: 'JetBrains Mono', monospace; }
+    .footer-brand { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #00D4FF; }
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .header { background: #0A1628 !important; }
+    }
+    [contenteditable] { outline: none; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-inner">
+      <div class="header-top">
+        <div>
+          <div class="logo">Softworks</div>
+          <div class="legal-name">Softworks Trading Company</div>
+        </div>
+        <div style="text-align: right;">
+          <div class="doc-title">STATEMENT OF WORK</div>
+          <div class="doc-number" contenteditable>SOW-2026-001</div>
+        </div>
+      </div>
+      <h1 class="project-title" contenteditable>Sales Pipeline Automation System</h1>
+    </div>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-bar-inner">
+      <div class="info-item">
+        <div class="label">Client</div>
+        <div class="value"><span contenteditable>Client Name</span> (<span contenteditable>Company</span>)</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Issue Date</div>
+        <div class="value" contenteditable>2026-01-26</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Effective Date</div>
+        <div class="value value-highlight" contenteditable>2026-02-01</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="section">
+      <div class="section-title">1. Project Overview</div>
+      <p class="section-text" contenteditable>This Statement of Work outlines the development of an automated sales pipeline system that integrates your CRM with email, calendar, and communication tools to reduce manual data entry and improve sales team productivity.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">2. Scope of Work</div>
+
+      <div class="scope-group">
+        <div class="scope-group-title" contenteditable>CRM Integration</div>
+        <ul class="scope-list">
+          <li contenteditable>Bi-directional sync with Salesforce</li>
+          <li contenteditable>Automatic contact creation from email signatures</li>
+          <li contenteditable>Deal stage updates based on email/meeting activity</li>
+        </ul>
+      </div>
+
+      <div class="scope-group">
+        <div class="scope-group-title" contenteditable>Email Automation</div>
+        <ul class="scope-list">
+          <li contenteditable>Automated follow-up sequences</li>
+          <li contenteditable>Email tracking and engagement metrics</li>
+          <li contenteditable>Template management system</li>
+        </ul>
+      </div>
+
+      <div class="scope-group">
+        <div class="scope-group-title" contenteditable>Reporting Dashboard</div>
+        <ul class="scope-list">
+          <li contenteditable>Real-time pipeline visibility</li>
+          <li contenteditable>Activity tracking by rep</li>
+          <li contenteditable>Forecasting tools</li>
+        </ul>
+      </div>
+
+      <div class="out-of-scope">
+        <div class="out-of-scope-label">Out of Scope</div>
+        <ul class="out-of-scope-list">
+          <li contenteditable>Mobile app development</li>
+          <li contenteditable>Marketing automation features</li>
+          <li contenteditable>Custom CRM development (using existing Salesforce)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">3. Deliverables</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width: 70%;">Deliverable</th>
+            <th class="right" style="width: 30%;">Due Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="deliverable-row"><span class="deliverable-num">1</span><span contenteditable>Technical Requirements Document</span></div></td>
+            <td class="mono right" contenteditable>2026-02-07</td>
+          </tr>
+          <tr>
+            <td><div class="deliverable-row"><span class="deliverable-num">2</span><span contenteditable>System Architecture Design</span></div></td>
+            <td class="mono right" contenteditable>2026-02-14</td>
+          </tr>
+          <tr>
+            <td><div class="deliverable-row"><span class="deliverable-num">3</span><span contenteditable>CRM Integration Module</span></div></td>
+            <td class="mono right" contenteditable>2026-03-01</td>
+          </tr>
+          <tr>
+            <td><div class="deliverable-row"><span class="deliverable-num">4</span><span contenteditable>Email Automation System</span></div></td>
+            <td class="mono right" contenteditable>2026-03-15</td>
+          </tr>
+          <tr>
+            <td><div class="deliverable-row"><span class="deliverable-num">5</span><span contenteditable>Reporting Dashboard</span></div></td>
+            <td class="mono right" contenteditable>2026-03-29</td>
+          </tr>
+          <tr>
+            <td><div class="deliverable-row"><span class="deliverable-num">6</span><span contenteditable>User Training & Documentation</span></div></td>
+            <td class="mono right" contenteditable>2026-04-05</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">4. Timeline & Milestones</div>
+      <div class="milestone-item">
+        <div class="milestone-date" contenteditable>2026-02-01</div>
+        <div class="milestone-content">
+          <div class="milestone-name" contenteditable>Project Kickoff</div>
+          <div class="milestone-desc" contenteditable>Discovery sessions and requirements gathering</div>
+        </div>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-date" contenteditable>2026-02-14</div>
+        <div class="milestone-content">
+          <div class="milestone-name" contenteditable>Design Complete</div>
+          <div class="milestone-desc" contenteditable>Architecture approved, development begins</div>
+        </div>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-date" contenteditable>2026-03-15</div>
+        <div class="milestone-content">
+          <div class="milestone-name" contenteditable>Alpha Release</div>
+          <div class="milestone-desc" contenteditable>Core features ready for internal testing</div>
+        </div>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-date" contenteditable>2026-03-29</div>
+        <div class="milestone-content">
+          <div class="milestone-name" contenteditable>Beta Release</div>
+          <div class="milestone-desc" contenteditable>Full system ready for user acceptance testing</div>
+        </div>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-date" contenteditable>2026-04-05</div>
+        <div class="milestone-content">
+          <div class="milestone-name" contenteditable>Go Live</div>
+          <div class="milestone-desc" contenteditable>Production deployment and team training</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">5. Investment</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width: 50%;">Item</th>
+            <th class="right" style="width: 15%;">Qty</th>
+            <th class="right" style="width: 17.5%;">Rate</th>
+            <th class="right" style="width: 17.5%;">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable>Discovery & Requirements</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$2,500.00</td>
+            <td class="mono right bold">$2,500.00</td>
+          </tr>
+          <tr>
+            <td contenteditable>Architecture & Design</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$3,500.00</td>
+            <td class="mono right bold">$3,500.00</td>
+          </tr>
+          <tr>
+            <td contenteditable>CRM Integration Development</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$8,000.00</td>
+            <td class="mono right bold">$8,000.00</td>
+          </tr>
+          <tr>
+            <td contenteditable>Email Automation Development</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$6,000.00</td>
+            <td class="mono right bold">$6,000.00</td>
+          </tr>
+          <tr>
+            <td contenteditable>Dashboard Development</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$4,000.00</td>
+            <td class="mono right bold">$4,000.00</td>
+          </tr>
+          <tr>
+            <td contenteditable>Testing & QA</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$2,000.00</td>
+            <td class="mono right bold">$2,000.00</td>
+          </tr>
+          <tr>
+            <td contenteditable>Training & Documentation</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$1,500.00</td>
+            <td class="mono right bold">$1,500.00</td>
+          </tr>
+          <tr class="table-total">
+            <td colspan="3" class="label" style="text-align: right;">Total</td>
+            <td class="right value" contenteditable>$27,500.00</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 24px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #64748B; margin-bottom: 12px;">Payment Schedule</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="width: 50%;">Milestone</th>
+              <th class="right" style="width: 25%;">Amount</th>
+              <th class="right" style="width: 25%;">Due Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td contenteditable>Project Kickoff</td>
+              <td class="mono right" contenteditable>$8,250.00</td>
+              <td class="mono right" contenteditable>2026-02-01</td>
+            </tr>
+            <tr>
+              <td contenteditable>Alpha Release</td>
+              <td class="mono right" contenteditable>$9,625.00</td>
+              <td class="mono right" contenteditable>2026-03-15</td>
+            </tr>
+            <tr>
+              <td contenteditable>Go Live</td>
+              <td class="mono right" contenteditable>$9,625.00</td>
+              <td class="mono right" contenteditable>2026-04-05</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">6. Assumptions</div>
+      <ol class="assumption-list">
+        <li><span class="num">1.</span><span contenteditable>Client will provide API access to Salesforce within 5 business days of kickoff</span></li>
+        <li><span class="num">2.</span><span contenteditable>Client will designate a project point of contact available for weekly syncs</span></li>
+        <li><span class="num">3.</span><span contenteditable>Feedback on deliverables will be provided within 3 business days</span></li>
+        <li><span class="num">4.</span><span contenteditable>Existing Salesforce configuration meets minimum requirements</span></li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <div class="section-title">7. Acceptance Criteria</div>
+      <ul class="criteria-list">
+        <li contenteditable>All integrations pass automated test suite with 95%+ success rate</li>
+        <li contenteditable>Dashboard loads within 3 seconds under normal conditions</li>
+        <li contenteditable>Email sequences trigger correctly based on defined rules</li>
+        <li contenteditable>User documentation covers all features with step-by-step guides</li>
+      </ul>
+    </div>
+
+    <div class="signatures">
+      <div class="signatures-title">Agreement & Signatures</div>
+      <p class="signatures-intro">By signing below, both parties agree to the terms, deliverables, timeline, and payment schedule outlined in this Statement of Work.</p>
+      <div class="sig-grid">
+        <div>
+          <div class="sig-party-label">Client</div>
+          <div class="sig-line"></div>
+          <div class="sig-label">Signature</div>
+          <div class="sig-line" style="margin-top: 32px;"></div>
+          <div class="sig-label">Printed Name & Title</div>
+          <div class="sig-line" style="margin-top: 32px;"></div>
+          <div class="sig-label">Date</div>
+        </div>
+        <div>
+          <div class="sig-party-label">Softworks</div>
+          <div class="sig-line"></div>
+          <div class="sig-label">Signature</div>
+          <div class="sig-line" style="margin-top: 32px;"></div>
+          <div class="sig-label">Printed Name & Title</div>
+          <div class="sig-line" style="margin-top: 32px;"></div>
+          <div class="sig-label">Date</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-contact">
+        <span>fred@sftwrks.com</span> • <span>sftwrks.com</span>
+      </div>
+      <div class="footer-brand">SOFTWORKS</div>
+    </div>
+  </div>
+</body>
+</html>

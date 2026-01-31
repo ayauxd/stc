@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposal - Softworks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fff;
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .header {
+      background: #0A1628;
+      color: #fff;
+      padding: 48px 32px;
+    }
+    .header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+    }
+    .logo {
+      font-family: 'Nunito', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .legal-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #94A3B8;
+      margin-top: 4px;
+    }
+    .doc-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94A3B8;
+    }
+    .doc-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #00D4FF;
+    }
+    .project-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 32px;
+    }
+    .meta-row {
+      display: flex;
+      gap: 32px;
+      font-size: 14px;
+    }
+    .meta-item .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94A3B8;
+      margin-bottom: 4px;
+    }
+    .meta-item .value { font-weight: 600; }
+    .meta-item .value-warning { color: #FBBF24; }
+    .body { max-width: 800px; margin: 0 auto; padding: 48px 32px; }
+    .section { margin-bottom: 48px; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #00D4FF;
+      margin-bottom: 16px;
+    }
+    .section-text {
+      font-size: 16px;
+      color: #475569;
+      line-height: 1.7;
+    }
+    .section-text.large { font-size: 18px; }
+    .challenge-box {
+      background: #F8FAFC;
+      border-left: 4px solid #0A1628;
+      padding: 24px;
+    }
+    .challenge-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748B;
+      margin-bottom: 12px;
+    }
+    .deliverables-list { list-style: none; }
+    .deliverables-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .deliverable-num {
+      width: 24px;
+      height: 24px;
+      background: #0A1628;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #F1F5F9;
+      margin-bottom: 16px;
+    }
+    .timeline-item:last-child { border-bottom: none; margin-bottom: 0; }
+    .timeline-duration {
+      width: 96px;
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: #0891B2;
+      text-transform: uppercase;
+    }
+    .timeline-content {}
+    .timeline-phase {
+      font-family: 'Courier Prime', monospace;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .timeline-desc { font-size: 14px; color: #64748B; }
+    .table {
+      width: 100%;
+      border: 1px solid #E2E8F0;
+      border-collapse: collapse;
+    }
+    .table th {
+      background: #F8FAFC;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748B;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .table th.right { text-align: right; }
+    .table td {
+      padding: 16px;
+      font-size: 14px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .table td.mono { font-family: 'JetBrains Mono', monospace; color: #475569; }
+    .table td.right { text-align: right; }
+    .table td.bold { font-weight: 600; }
+    .table-total td {
+      background: #0A1628;
+      color: #fff;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .table-total td.label { font-family: 'Courier Prime', monospace; }
+    .table-total td.value { font-family: 'JetBrains Mono', monospace; color: #00D4FF; }
+    .terms-list {
+      list-style: none;
+      font-size: 14px;
+      color: #64748B;
+    }
+    .terms-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .terms-list li::before { content: "•"; color: #00D4FF; font-weight: bold; }
+    .next-steps-box {
+      background: rgba(0, 212, 255, 0.05);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      padding: 24px;
+    }
+    .next-steps-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #0891B2;
+      margin-bottom: 16px;
+    }
+    .next-steps-list {
+      list-style: none;
+      font-size: 14px;
+      color: #475569;
+    }
+    .next-steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .next-steps-list li .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #0891B2;
+    }
+    .acceptance {
+      padding-top: 32px;
+      border-top: 1px solid #E2E8F0;
+    }
+    .acceptance-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94A3B8;
+      margin-bottom: 24px;
+    }
+    .acceptance-intro {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 32px;
+    }
+    .sig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .sig-line {
+      border-bottom: 1px solid #CBD5E1;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      min-height: 40px;
+    }
+    .sig-label {
+      font-size: 10px;
+      color: #94A3B8;
+    }
+    .footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #E2E8F0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #94A3B8;
+    }
+    .footer-contact { font-family: 'JetBrains Mono', monospace; }
+    .footer-brand { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #00D4FF; }
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .header { background: #0A1628 !important; }
+    }
+    [contenteditable] { outline: none; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-inner">
+      <div class="header-top">
+        <div>
+          <div class="logo">Softworks</div>
+          <div class="legal-name">Softworks Trading Company</div>
+        </div>
+        <div style="text-align: right;">
+          <div class="doc-label">Proposal</div>
+          <div class="doc-number" contenteditable>PROP-2026-001</div>
+        </div>
+      </div>
+      <h1 class="project-title" contenteditable>AI-Powered Customer Service Automation</h1>
+      <div class="meta-row">
+        <div class="meta-item">
+          <div class="label">Prepared For</div>
+          <div class="value"><span contenteditable>Client Name</span> • <span contenteditable>Company</span></div>
+        </div>
+        <div class="meta-item">
+          <div class="label">Date</div>
+          <div class="value" contenteditable>2026-01-26</div>
+        </div>
+        <div class="meta-item">
+          <div class="label">Valid Until</div>
+          <div class="value value-warning" contenteditable>2026-02-26</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="section">
+      <div class="section-label">Executive Summary</div>
+      <p class="section-text large" contenteditable>We propose implementing an intelligent automation system that will transform your customer service operations, reducing response times by 70% while maintaining the personal touch your customers expect.</p>
+    </div>
+
+    <div class="section">
+      <div class="challenge-box">
+        <div class="challenge-label">The Challenge</div>
+        <p class="section-text" contenteditable>Your team currently spends 60% of their time on repetitive inquiries that could be automated. This leads to longer response times, increased costs, and limits your ability to scale support during peak periods.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Our Solution</div>
+      <p class="section-text" contenteditable>We will design and implement a custom AI-powered system that handles routine inquiries automatically, routes complex issues to the right team members, and provides your agents with context and suggested responses to resolve issues faster.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Deliverables</div>
+      <ul class="deliverables-list">
+        <li><span class="deliverable-num">1</span><span contenteditable>Custom AI chatbot trained on your knowledge base and FAQ content</span></li>
+        <li><span class="deliverable-num">2</span><span contenteditable>Intelligent ticket routing system with priority classification</span></li>
+        <li><span class="deliverable-num">3</span><span contenteditable>Agent assist dashboard with suggested responses and context</span></li>
+        <li><span class="deliverable-num">4</span><span contenteditable>Analytics dashboard tracking resolution times and customer satisfaction</span></li>
+        <li><span class="deliverable-num">5</span><span contenteditable>Integration with your existing helpdesk software</span></li>
+        <li><span class="deliverable-num">6</span><span contenteditable>Complete documentation and training for your team</span></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Timeline</div>
+      <div class="timeline-item">
+        <div class="timeline-duration" contenteditable>Week 1-2</div>
+        <div class="timeline-content">
+          <div class="timeline-phase" contenteditable>Discovery & Planning</div>
+          <div class="timeline-desc" contenteditable>Deep dive into your current processes, pain points, and goals. Map out the ideal customer journey.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-duration" contenteditable>Week 3-4</div>
+        <div class="timeline-content">
+          <div class="timeline-phase" contenteditable>Design & Architecture</div>
+          <div class="timeline-desc" contenteditable>Design the system architecture, AI training plan, and integration approach.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-duration" contenteditable>Week 5-8</div>
+        <div class="timeline-content">
+          <div class="timeline-phase" contenteditable>Development</div>
+          <div class="timeline-desc" contenteditable>Build the automation system, train the AI, and develop integrations.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-duration" contenteditable>Week 9-10</div>
+        <div class="timeline-content">
+          <div class="timeline-phase" contenteditable>Testing & Refinement</div>
+          <div class="timeline-desc" contenteditable>Thorough testing, AI fine-tuning, and performance optimization.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-duration" contenteditable>Week 11-12</div>
+        <div class="timeline-content">
+          <div class="timeline-phase" contenteditable>Launch & Training</div>
+          <div class="timeline-desc" contenteditable>Staged rollout, team training, and handover documentation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Investment</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width: 50%;">Item</th>
+            <th class="right" style="width: 15%;">Qty</th>
+            <th class="right" style="width: 17.5%;">Rate</th>
+            <th class="right" style="width: 17.5%;">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable>Discovery & Planning</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$3,000.00</td>
+            <td class="mono right bold">$3,000.00</td>
+          </tr>
+          <tr>
+            <td contenteditable>Design & Architecture</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$4,000.00</td>
+            <td class="mono right bold">$4,000.00</td>
+          </tr>
+          <tr>
+            <td contenteditable>Development & Integration</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$12,000.00</td>
+            <td class="mono right bold">$12,000.00</td>
+          </tr>
+          <tr>
+            <td contenteditable>Testing & QA</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$2,500.00</td>
+            <td class="mono right bold">$2,500.00</td>
+          </tr>
+          <tr>
+            <td contenteditable>Training & Documentation</td>
+            <td class="mono right" contenteditable>1</td>
+            <td class="mono right" contenteditable>$1,500.00</td>
+            <td class="mono right bold">$1,500.00</td>
+          </tr>
+          <tr class="table-total">
+            <td colspan="3" class="label" style="text-align: right;">Total Investment</td>
+            <td class="right value" contenteditable>$23,000.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-label" style="color: #94A3B8;">Terms</div>
+      <ul class="terms-list">
+        <li contenteditable>50% deposit to commence work</li>
+        <li contenteditable>25% due at development milestone</li>
+        <li contenteditable>25% due upon project completion</li>
+        <li contenteditable>30-day support period included post-launch</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="next-steps-box">
+        <div class="next-steps-label">Next Steps</div>
+        <ol class="next-steps-list">
+          <li><span class="num">1.</span><span contenteditable>Review this proposal and let us know if you have any questions</span></li>
+          <li><span class="num">2.</span><span contenteditable>Sign and return to confirm engagement</span></li>
+          <li><span class="num">3.</span><span contenteditable>Schedule kickoff call to begin discovery phase</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="acceptance">
+      <div class="acceptance-title">Acceptance</div>
+      <p class="acceptance-intro">By signing below, you accept this proposal and agree to the terms outlined herein.</p>
+      <div class="sig-grid">
+        <div>
+          <div class="sig-line"></div>
+          <div class="sig-label">Client Signature</div>
+          <div class="sig-line" style="margin-top: 32px;"></div>
+          <div class="sig-label">Printed Name</div>
+          <div class="sig-line" style="margin-top: 32px;"></div>
+          <div class="sig-label">Date</div>
+        </div>
+        <div>
+          <div class="sig-line"></div>
+          <div class="sig-label">Softworks Signature</div>
+          <div class="sig-line" style="margin-top: 32px;"></div>
+          <div class="sig-label">Printed Name</div>
+          <div class="sig-line" style="margin-top: 32px;"></div>
+          <div class="sig-label">Date</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-contact">
+        <span>fred@sftwrks.com</span> • <span>sftwrks.com</span>
+      </div>
+      <div class="footer-brand">SOFTWORKS</div>
+    </div>
+  </div>
+</body>
+</html>

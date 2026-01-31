@@ -1,0 +1,624 @@
+# Softworks Trading Company - AI Consulting Service Catalog
+# Version: 2026-01-28
+# Source: PHILOSOPHY.md + Iroko pricing model
+#
+# CORE PRINCIPLE: Sell outcomes, not hours.
+# "The question isn't 'what's my rate?' It's 'what's the cost of NOT solving this problem?'"
+
+meta:
+  version: "2026-01-28"
+  currency: "USD"
+  valid_through: "2026-06-30"
+  source_documents:
+    - "stc/PHILOSOPHY.md"
+    - "softworks-clients/clients/iroko/pricing-breakdown.md"
+
+# =============================================================================
+# PRICING PHILOSOPHY (FROM PHILOSOPHY.MD)
+# =============================================================================
+
+philosophy:
+  core: "Sell outcomes, not hours."
+
+  value_conversation:
+    questions:
+      - "What's the cost of NOT solving this in the next 12 months?"
+      - "How would a 20% improvement look in dollars?"
+      - "What have you already invested trying to solve this?"
+
+  two_rates:
+    market_rate:
+      description: |
+        Full value pricing that accounts for:
+        - Hard costs (subscriptions, APIs, domains, third-party tools)
+        - Skill and judgment
+        - Opportunity cost
+        - Ongoing support
+
+    partnership_rate:
+      description: |
+        Covers hard costs only. The skill is invested, not billed.
+
+        When to apply:
+        - Strategic relationships with long-term alignment
+        - Portfolio-building projects that demonstrate capability
+        - Mutual growth potential where success compounds
+
+      transparency: |
+        Always show full market value so clients understand what they're receiving.
+        The discount is visible, not hidden.
+
+      example: "Assured Integrity: $8,599 market value, $1,150 partnership rate (87% invested)"
+
+  client_selection:
+    green_flags:
+      - "Ask 'what should we do?' not 'can you do this cheaper?'"
+      - "Treat you as strategic advisor, not vendor"
+      - "Value deliberate approach over rushed delivery"
+      - "Have budget aligned with problem severity"
+      - "Accessible decision-makers"
+
+    red_flags:
+      - "Price-first conversations before understanding scope"
+      - "Scope creep without discussion"
+      - "Transactional framing ('just need someone to execute')"
+      - "Urgency without clear rationale"
+      - "Decision-makers hidden behind gatekeepers"
+
+    core_question: "Do they want strategic partnership or labor extraction?"
+
+# =============================================================================
+# ENTRY POINT: DIAGNOSTIC FIRST
+# =============================================================================
+# "Never scope big projects blind."
+
+diagnostic:
+  name: "AI Opportunity Assessment"
+  code: "DIAG-AI"
+
+  description: |
+    Paid diagnostic that positions you as the expert who already understands their business.
+    70-80% of diagnostics convert to implementation projects.
+
+  pricing:
+    range: [1500, 3000]
+    typical: 2000
+
+  includes:
+    - "2-hour discovery session"
+    - "Document current workflows and pain points"
+    - "Identify 3-5 opportunities with ROI projections"
+    - "Written report with prioritized recommendations"
+    - "30-minute follow-up to discuss implementation"
+
+  deliverable: "Assessment report with ranked opportunities and projected ROI"
+
+  conversion_rate: "70-80%"
+
+  value_frame: |
+    "This isn't a sales call disguised as consulting. You're paying for my expertise
+    to analyze your business and tell you what's actually worth automating.
+    If you implement with someone else, you still have the roadmap."
+
+# =============================================================================
+# SERVICE TIERS (THREE-OPTION STRUCTURE)
+# =============================================================================
+# "70-80% of buyers choose the middle option. Never present a single price."
+
+service_tiers:
+
+  # ---------------------------------------------------------------------------
+  # TIER A: Foundation (Human-in-the-Loop Optimization)
+  # ---------------------------------------------------------------------------
+  foundation:
+    name: "Foundation"
+    code: "TIER-A"
+    position: "entry"  # Exists so B looks better
+
+    description: |
+      Basic implementation, limited support window.
+      Client uses ChatGPT/Claude directly; we optimize their workflow.
+
+    what_it_is: |
+      You continue using AI tools manually. We give you better prompts,
+      documented workflows, and training. You stay in control of every action.
+
+    includes:
+      - "Custom prompt library (20-30 prompts for your use cases)"
+      - "Workflow documentation"
+      - "2x 60-min training sessions"
+      - "30-day email support"
+
+    does_not_include:
+      - "Training assistant"
+      - "Automation setup"
+      - "Ongoing retainer access"
+
+    pricing:
+      market_rate: 2000
+      range: [1500, 2500]
+
+    client_ongoing_costs:
+      monthly: "20-120"
+      breakdown:
+        - item: "ChatGPT Pro"
+          cost: 20
+        - item: "Claude Pro/Max (optional)"
+          cost: "20-100"
+
+    honest_assessment:
+      build_if:
+        - "Testing the waters before committing to automation"
+        - "Tasks where your judgment must be involved every time"
+        - "Budget-conscious, time-rich"
+      skip_if:
+        - "You're already overwhelmed with manual work"
+        - "You need time back, not just efficiency"
+
+    time_savings: "20-30% efficiency gain, but YOU still do the work"
+
+  # ---------------------------------------------------------------------------
+  # TIER B: Professional (Autonomous + Training Assistant)
+  # ---------------------------------------------------------------------------
+  professional:
+    name: "Professional"
+    code: "TIER-B"
+    position: "target"  # This is what 70-80% should choose
+
+    description: |
+      Full implementation + Training Assistant + 90-day support.
+      AI works autonomously; you review and approve.
+
+    what_it_is: |
+      We build an autonomous AI system (cloud-based or Mac Mini) that handles
+      your repetitive tasks. You get a Training Assistant—a custom chatbot
+      that answers your questions 24/7. Human support from Softworks for
+      complex issues.
+
+    includes:
+      setup:
+        - "MoltBot/Claude Code deployment (cloud VPS or Mac Mini)"
+        - "5-10 custom workflows for your specific tasks"
+        - "Approval gates (Telegram/SMS) for high-stakes actions"
+        - "API credential management and security hardening"
+
+      training_assistant:
+        - "Custom chatbot trained on YOUR workflows"
+        - "Step-by-step guides for every automated task"
+        - "Troubleshooting decision trees"
+        - "FAQ from onboarding questions"
+        - "Available 24/7 for self-service learning"
+
+      human_support:
+        - "4x 60-min training sessions"
+        - "90-day active support (email + calls)"
+        - "Escalation path to Frederick for complex issues"
+
+      documentation:
+        - "User guide"
+        - "Admin guide"
+        - "Video walkthroughs"
+
+    pricing:
+      # Value-based: 7-12% of year-1 savings (per Iroko model)
+      value_based:
+        percentage_of_annual_savings: "7-12%"
+        example:
+          hours_saved_per_week: 15
+          hourly_rate: 100
+          annual_savings: 78000  # 15 × 100 × 52
+          fee_at_10_percent: 7800
+
+      market_rate: 7500
+      range: [5000, 12000]
+
+      # Softworks investment for margin validation
+      softworks_investment:
+        setup_hours: 25
+        training_assistant_hours: 10
+        support_hours: 8
+        total_hours: 43
+        cost_at_150_hr: 6450
+        minimum_margin_40_percent: 10750
+
+    client_ongoing_costs:
+      monthly: "50-200"
+      breakdown:
+        - item: "VPS hosting (if cloud)"
+          cost: "5-20"
+        - item: "Claude API tokens"
+          cost: "30-150"
+        - item: "Mac Mini electricity (if hardware)"
+          cost: "10-20"
+
+    client_hardware:
+      mac_mini_base: 599
+      mac_mini_recommended: 999
+      note: "Client purchases directly if choosing Mac Mini route"
+
+    honest_assessment:
+      build_if:
+        - "You're drowning in repetitive tasks"
+        - "You want to work ON the business, not IN it"
+        - "You value time back over control"
+      skip_if:
+        - "Every task requires your personal judgment"
+        - "You're not comfortable with 'review and approve' workflow"
+
+    time_savings: "15-20 hours/week reclaimed"
+
+    value_frame: |
+      "You're spending ~20 hours/week on tasks this system can handle.
+      At $100/hour, that's $104K/year in time value.
+      Our fee captures 7-10% of that—you see 10x return in year one."
+
+  # ---------------------------------------------------------------------------
+  # TIER C: Executive (Everything + Advisory + 6-Month Retainer)
+  # ---------------------------------------------------------------------------
+  executive:
+    name: "Executive"
+    code: "TIER-C"
+    position: "anchor"  # Exists to anchor value; captures clients who want ongoing access
+
+    description: |
+      Everything in Professional + strategic advisory + 6-month retainer access.
+      You become someone who can build AI systems, not just use them.
+
+    what_it_is: |
+      Full developer environment: CLI/IDE + APIs + n8n automation + custom pipelines.
+      Training Assistant with developer capabilities. Direct access to Frederick
+      for strategic decisions. Capability transfer—you learn to build, not just use.
+
+    includes:
+      everything_in_professional: true
+
+      additional_setup:
+        - "Full development environment (Claude Code, Cursor, n8n)"
+        - "CLAUDE.md and project documentation"
+        - "Git repository structure"
+        - "5-10 custom automation pipelines"
+        - "Multi-API integration (Claude, OpenAI, Gemini)"
+
+      training_assistant_enhanced:
+        - "Developer-focused features"
+        - "Command reference and examples"
+        - "Code review capabilities"
+        - "Debugging assistance"
+
+      strategic_advisory:
+        - "6x 60-min sessions (can spread over months)"
+        - "Pair programming sessions"
+        - "Quarterly strategy calls (first year)"
+        - "Direct Slack/message access to Frederick"
+        - "Priority response for technical questions"
+
+      capability_transfer:
+        - "You learn to modify and extend the system"
+        - "Could eventually offer AI setup to YOUR clients"
+
+    pricing:
+      value_based:
+        percentage_of_annual_savings: "10-15%"
+        plus: "Capability premium (you gain a skill)"
+        example:
+          hours_saved_per_week: 20
+          hourly_rate: 150
+          annual_savings: 156000
+          fee_at_12_percent: 18720
+
+      market_rate: 18000
+      range: [15000, 30000]
+
+      includes_retainer:
+        duration: "6 months"
+        value: 4800  # $800/mo × 6
+
+      softworks_investment:
+        setup_hours: 40
+        training_assistant_hours: 15
+        training_sessions: 10
+        ongoing_advisory: 12
+        total_hours: 77
+        cost_at_150_hr: 11550
+        minimum_margin_40_percent: 19250
+
+    client_ongoing_costs:
+      monthly: "150-500"
+      breakdown:
+        - item: "Claude Max subscription"
+          cost: 100
+        - item: "Claude API tokens"
+          cost: "20-200"
+        - item: "n8n Cloud (optional)"
+          cost: "0-24"
+        - item: "Hosting/domains"
+          cost: "10-50"
+        - item: "Other APIs"
+          cost: "0-100"
+
+    honest_assessment:
+      build_if:
+        - "You want to deeply understand AI, not just use it"
+        - "You might offer AI services to your own clients"
+        - "You're committed to 3-6 month learning curve"
+        - "Long-term ROI thinking"
+      skip_if:
+        - "You just want it to work without understanding it"
+        - "You don't have time/interest in learning technical skills"
+        - "Looking for quick fix, not capability building"
+
+    time_savings: "20+ hours/week + transferable skill"
+
+    value_frame: |
+      "This isn't just automation—it's capability transfer.
+      You don't just get time back; you become someone who builds AI systems.
+      Course creators could offer this to their students. Consultants could
+      offer this to their clients. The skill compounds."
+
+# =============================================================================
+# TRAINING ASSISTANT (INCLUDED IN PROFESSIONAL + EXECUTIVE)
+# =============================================================================
+
+training_assistant:
+  description: |
+    Custom chatbot trained on client's specific workflows.
+    Available 24/7 for self-service learning.
+    Reduces human support load while improving client experience.
+
+  components:
+    - name: "Workflow Guides"
+      description: "Step-by-step for each automated workflow"
+
+    - name: "Troubleshooting"
+      description: "If X happens, do Y decision tree"
+
+    - name: "Command Reference"
+      description: "For Executive tier: all commands with examples"
+
+    - name: "FAQ"
+      description: "Built from actual client questions during onboarding"
+
+    - name: "Escalation"
+      description: "When to contact human support vs. self-solve"
+
+  delivery:
+    format: "Claude Project with custom instructions OR custom GPT"
+    handoff: "Client gets full access, can share with team"
+    updates: "Included in support period; retainer for ongoing updates"
+
+  build_time:
+    professional: "10 hours"
+    executive: "15 hours"
+
+  value: |
+    This is the differentiator. Client gets 24/7 support without
+    Softworks being on-call 24/7. Scales without scaling our time.
+
+# =============================================================================
+# ADD-ON SERVICES (MODULAR, LIKE IROKO)
+# =============================================================================
+
+add_ons:
+  additional_training:
+    name: "Additional Training Session"
+    code: "TRAIN-1HR"
+    price: 175
+    unit: "per hour"
+
+  additional_workflow:
+    name: "Custom Workflow"
+    code: "WF-ADD"
+    price: 400
+    range: [300, 700]
+    unit: "per workflow"
+    honest_assessment: "Build if you have a specific repetitive task. Skip if speculative."
+
+  api_integration:
+    name: "API Integration"
+    code: "API-INT"
+    price: 500
+    range: [350, 900]
+    unit: "per integration"
+    examples: ["Gmail", "Slack", "Notion", "Airtable", "WordPress", "Twilio"]
+
+  team_training:
+    name: "Team Training Package"
+    code: "TEAM-TRAIN"
+    price: 900
+    includes: ["3x 60-min sessions", "Up to 5 participants", "Recording"]
+
+  training_assistant_update:
+    name: "Training Assistant Update"
+    code: "TA-UPDATE"
+    price: 350
+    description: "Add new workflows/content to training assistant"
+
+# =============================================================================
+# RETAINERS ("PAY FOR ACCESS" MODEL FROM PHILOSOPHY.MD)
+# =============================================================================
+
+retainers:
+  description: |
+    After successful project delivery, propose ongoing access.
+    "3 retainer clients at $5,000/month = $15,000 stable base."
+
+  maintenance:
+    name: "Maintenance Retainer"
+    code: "RET-MAINT"
+    price: 800
+    hours: 4
+    includes:
+      - "4 hours/month"
+      - "Bug fixes, updates, adjustments"
+      - "Training assistant updates"
+      - "Monthly check-in call"
+
+  advisory:
+    name: "Advisory Retainer"
+    code: "RET-ADVISE"
+    price: 3000
+    range: [3000, 8000]
+    includes:
+      - "Monthly strategy call"
+      - "Unlimited async support (Slack/email)"
+      - "Priority response for technical questions"
+      - "Quarterly business review with new opportunity identification"
+      - "First call on new implementations"
+
+# =============================================================================
+# VALUE-BASED PRICING CALCULATOR
+# =============================================================================
+
+value_calculation:
+  formula: |
+    annual_value = hours_saved_per_week × hourly_rate × 52
+    our_fee = annual_value × 0.07 to 0.12
+
+  example:
+    client: "Course Creator"
+    hours_saved_per_week: 18
+    hourly_rate: 150
+    annual_value: 140400  # 18 × 150 × 52
+    fee_at_7_percent: 9828
+    fee_at_10_percent: 14040
+    fee_at_12_percent: 16848
+
+  presentation: |
+    "Based on our discovery, you're spending ~X hours/week on tasks we can automate.
+    At your rate, that's $Y/year in time value.
+
+    Our fee of $Z captures about N% of that—meaning you see [10-14]x return in year one.
+    Plus, the Training Assistant and our support mean you're never stuck.
+
+    By month N, the system pays for itself."
+
+  when_to_use:
+    - "Client has clear, quantifiable time savings"
+    - "Client understands their hourly value"
+    - "Savings are obvious and easy to project"
+
+  when_to_use_fixed:
+    - "Value hard to quantify"
+    - "Client prefers certainty"
+    - "Relationship-building (strategic discount)"
+
+# =============================================================================
+# PARTNERSHIP RATE GUIDELINES
+# =============================================================================
+
+partnership_rate:
+  when_to_apply:
+    - "Strategic relationships with long-term alignment"
+    - "Portfolio-building projects that demonstrate capability"
+    - "Mutual growth potential where success compounds"
+
+  how_to_present: |
+    Show full market value. Make discount visible, not hidden.
+
+    "The market rate for this engagement is $X.
+    Because [strategic reason], I'm offering partnership rate of $Y.
+    This covers my hard costs; I'm investing the skill."
+
+  examples:
+    assured_integrity:
+      market_value: 8599
+      partnership_rate: 1150
+      discount: "87%"
+      reason: "Portfolio demonstration, mutual growth"
+
+    nonprofit_client:
+      market_value: 5000
+      partnership_rate: 2000
+      discount: "60%"
+      reason: "Mission alignment, case study potential"
+
+# =============================================================================
+# MATTY (LUXURY LEASING ACADEMY) - SPECIFIC QUOTE FRAMEWORK
+# =============================================================================
+
+example_matty:
+  context: |
+    Course creator teaching real estate agents luxury leasing.
+    Currently using Claude trial (Tier A equivalent, free).
+    Interested in Mac Mini + MoltBot setup.
+
+  discovery_needed:
+    - "How many hours/week on lead research?"
+    - "How many hours/week on content repurposing?"
+    - "How many hours/week on admin/community?"
+    - "What's his effective hourly rate? (He teaches 6-figure strategies)"
+
+  projected_value:
+    estimated_hours_per_week: 25
+    estimated_hourly_value: 150
+    estimated_time_savings: 18  # With automation
+    annual_value: 140400
+
+  options:
+    foundation:
+      fee: 2000
+      message: "Optimize what you're already doing. Quick win, low risk."
+
+    professional:
+      fee: 7500
+      value_percent: "5%"
+      message: |
+        "Your AI works while you sleep. Training Assistant guides you 24/7.
+        15-18 hours back per week. Pays for itself in 2 months."
+
+    executive:
+      fee: 15000
+      value_percent: "11%"
+      message: |
+        "You don't just get automation—you become someone who builds AI systems.
+        Could eventually offer this to your Elite Leasing Club members.
+        $500-1000/person × 50 members = $25K-50K new revenue stream."
+
+  recommendation: |
+    Lead with Professional ($7,500) — sweet spot of value and accessibility.
+    If he wants more, Executive ($15K) with capability transfer pitch.
+    If budget-constrained, Foundation ($2K) keeps relationship alive.
+
+  partnership_rate_consideration: |
+    If Matty becomes a strong case study for "course creators using AI,"
+    consider partnership rate on first engagement with retainer upsell.
+    Show him the full market value so he understands what he's receiving.
+
+# =============================================================================
+# BUILDUP DETECTION
+# =============================================================================
+
+buildup_detection:
+  during_discovery:
+    tier_signals:
+      foundation: ["Testing the waters", "Budget-conscious", "Control-focused"]
+      professional: ["Drowning in tasks", "Want time back", "Ready for automation"]
+      executive: ["Want to understand deeply", "Might offer to clients", "Long-term thinker"]
+
+  scope_creep_signals:
+    - signal: "3+ features not in original scope"
+      action: "Pause, document, propose add-on"
+    - signal: "Project exceeds timeline by 50%+"
+      action: "Review scope, renegotiate"
+    - signal: "Team grows mid-project"
+      action: "Add team training, adjust fee"
+    - signal: "Client wants to replicate for other business units"
+      action: "Propose Enterprise tier or retainer"
+
+  red_flag_responses:
+    price_first: "I'd need to understand your situation before discussing price. What problem are you trying to solve?"
+    urgency: "What's driving the timeline? If we rush, we'll build the wrong thing."
+    vendor_framing: "I work as a strategic partner, not an executor. If you need someone to just do tasks, I can refer you."
+
+# =============================================================================
+# NOTES
+# =============================================================================
+
+notes:
+  - "Diagnostic first — never scope big projects blind"
+  - "Three-option proposals — 70-80% choose middle"
+  - "Value-based when savings are clear; fixed when relationship-building"
+  - "Partnership rate for strategic relationships — show full value, discount visible"
+  - "Training Assistant is the differentiator — scales without scaling our time"
+  - "Honest assessment for every module — 'Build if... Skip if...'"
+  - "Client owns infrastructure costs — they pay providers directly"

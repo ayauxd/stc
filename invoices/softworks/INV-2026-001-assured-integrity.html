@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice - Assured Integrity Engineering Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fff;
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+    .header {
+      background: #0A1628;
+      color: #fff;
+      padding: 24px 32px;
+    }
+    .header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .logo {
+      font-family: 'Nunito', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .legal-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #94A3B8;
+      margin-top: 4px;
+    }
+    .doc-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: #00D4FF;
+      text-align: right;
+    }
+    .body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94A3B8;
+      margin-bottom: 4px;
+    }
+    .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .value-highlight {
+      color: #0891B2;
+    }
+    .bill-to {
+      text-align: right;
+    }
+    .bill-to .name {
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .bill-to .address {
+      color: #64748B;
+      font-size: 12px;
+      margin-top: 4px;
+      white-space: pre-line;
+    }
+    .table {
+      width: 100%;
+      border: 1px solid #E2E8F0;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+    }
+    .table th {
+      background: #F8FAFC;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748B;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .table th.right { text-align: right; }
+    .table td {
+      padding: 14px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid #F1F5F9;
+      vertical-align: top;
+    }
+    .table td.mono {
+      font-family: 'JetBrains Mono', monospace;
+      color: #475569;
+    }
+    .table td.right { text-align: right; }
+    .table td.bold { font-weight: 600; }
+    .item-title { font-weight: 500; }
+    .item-desc { font-size: 12px; color: #64748B; margin-top: 2px; }
+    .totals {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 40px;
+    }
+    .totals-box {
+      width: 280px;
+    }
+    .totals-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .totals-row .label { color: #64748B; margin-bottom: 0; }
+    .totals-row .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 400;
+    }
+    .totals-row.discount {
+      color: #059669;
+    }
+    .totals-row.discount .label { color: #059669; }
+    .totals-row.discount .value { color: #059669; font-weight: 600; }
+    .totals-row.original .value {
+      text-decoration: line-through;
+      color: #94A3B8;
+    }
+    .totals-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 16px;
+      margin: 8px -16px 0;
+      background: #0A1628;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .totals-total .label {
+      font-family: 'Courier Prime', monospace;
+      color: #fff;
+    }
+    .totals-total .value {
+      font-family: 'JetBrains Mono', monospace;
+      color: #00D4FF;
+    }
+    .savings-badge {
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      color: #059669;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 12px;
+    }
+    .payment-section {
+      padding-top: 32px;
+      border-top: 1px solid #E2E8F0;
+    }
+    .payment-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .payment-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .payment-method {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 16px;
+      color: #0891B2;
+    }
+    .payment-grid-inner {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 8px 16px;
+      font-size: 13px;
+    }
+    .payment-label { color: #64748B; }
+    .payment-value { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+    .payment-note {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #E2E8F0;
+      font-size: 11px;
+      color: #64748B;
+    }
+    .payment-note strong { color: #0891B2; }
+    .notes-section {
+      margin-top: 24px;
+    }
+    .notes { font-size: 12px; color: #64748B; line-height: 1.7; }
+    .footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #E2E8F0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #94A3B8;
+    }
+    .footer-contact {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .footer-brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #00D4FF;
+    }
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .header { background: #0A1628 !important; }
+      .totals-total { background: #0A1628 !important; }
+
+      /* Hide browser print headers/footers */
+      @page { margin: 0.5in; }
+
+      /* Page break controls */
+      .table { page-break-inside: auto; }
+      .table tr { page-break-inside: avoid; page-break-after: auto; }
+      .totals { page-break-inside: avoid; }
+      .payment-section { page-break-before: always; }
+      .payment-box { page-break-inside: avoid; margin-bottom: 16px; }
+      .notes-section { page-break-inside: avoid; }
+      .footer { page-break-inside: avoid; }
+    }
+    [contenteditable] { outline: none; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-inner">
+      <div>
+        <div class="logo">Softworks</div>
+        <div class="legal-name">Softworks Trading Company LLC</div>
+      </div>
+      <div>
+        <div class="doc-title">INVOICE</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="info-grid">
+      <div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <div class="label">Invoice No.</div>
+            <div class="value" contenteditable>INV-2026-AIE-001</div>
+          </div>
+          <div>
+            <div class="label">Issue Date</div>
+            <div class="value" contenteditable>January 26, 2026</div>
+          </div>
+          <div>
+            <div class="label">Due Date</div>
+            <div class="value value-highlight" contenteditable>February 9, 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="bill-to">
+        <div class="label">Bill To</div>
+        <div class="name">Assured Integrity Engineering Limited</div>
+        <div class="address">Km 3, DSC Expressway
+Otokutu, Delta State, Nigeria</div>
+        <div style="font-size: 12px; color: #64748B; margin-top: 4px;">info@assuredintegrityengineering.com</div>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 65%;">Description</th>
+          <th class="right" style="width: 35%;">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- WEBSITE & DEVELOPMENT -->
+        <tr style="background: #F8FAFC;">
+          <td colspan="2" style="padding: 8px 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #0891B2; font-weight: 600; border-bottom: 1px solid #E2E8F0;">Website & Development</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">Custom Website Design & Development</div>
+            <div class="item-desc">React + Vite + Tailwind build • 6 pages (Home, Services, About, Contact, Blog, Case Studies) • Dark mode • Scroll animations • Mobile-first responsive • Performance optimized</div>
+          </td>
+          <td class="mono right bold">$3,150.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">AI Chatbot Integration</div>
+            <div class="item-desc">Custom Claude-powered assistant • Company knowledge base • Conversation flow design • Session management • n8n webhook integration</div>
+          </td>
+          <td class="mono right bold">$1,400.00</td>
+        </tr>
+        <!-- CONTENT & MARKETING -->
+        <tr style="background: #F8FAFC;">
+          <td colspan="2" style="padding: 8px 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #0891B2; font-weight: 600; border-bottom: 1px solid #E2E8F0;">Content & Marketing</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">Content Strategy & Copywriting</div>
+            <div class="item-desc">Full content extraction from 22-page company profile • Service descriptions • Case study narratives • About/CEO messaging • SEO-optimized copy</div>
+          </td>
+          <td class="mono right bold">$850.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">Slide, Newsletter & Social Media Generator</div>
+            <div class="item-desc">Branded presentation templates • Newsletter design system • Social media branded theme & templates • n8n automation for AI-powered content generation</div>
+          </td>
+          <td class="mono right bold">$1,500.00</td>
+        </tr>
+
+        <!-- EMAIL & INFRASTRUCTURE -->
+        <tr style="background: #F8FAFC;">
+          <td colspan="2" style="padding: 8px 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #0891B2; font-weight: 600; border-bottom: 1px solid #E2E8F0;">Email & Infrastructure</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">Email Infrastructure Setup</div>
+            <div class="item-desc">Google Workspace configuration • Custom domain email • Team mailboxes • Signature templates • Security settings</div>
+          </td>
+          <td class="mono right bold">$350.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">Domain Renewal — 7 Years</div>
+            <div class="item-desc">assuredintegritygroup.com extension • DNS management • WHOIS privacy • Auto-renewal configured</div>
+          </td>
+          <td class="mono right bold">$105.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">Google Workspace Business Standard — 1 Year</div>
+            <div class="item-desc">Professional email suite • 2TB cloud storage • Google Meet • Shared drives • Admin console</div>
+          </td>
+          <td class="mono right bold">$144.00</td>
+        </tr>
+
+        <!-- SUBSCRIPTIONS & CREDITS -->
+        <tr style="background: #F8FAFC;">
+          <td colspan="2" style="padding: 8px 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #0891B2; font-weight: 600; border-bottom: 1px solid #E2E8F0;">Subscriptions & Credits</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">ChatGPT Plus — 1 Year</div>
+            <div class="item-desc">Premium AI assistant • Advanced reasoning • Image generation • Data analysis</div>
+          </td>
+          <td class="mono right bold">$200.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">Claude Pro — 1 Year</div>
+            <div class="item-desc">Premium AI assistant • Extended context • Priority access • Advanced analysis</div>
+          </td>
+          <td class="mono right bold">$200.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">API Credits (OpenAI + Anthropic + Gemini)</div>
+            <div class="item-desc">Pre-loaded credits for chatbot, content generation, image generation, and automation</div>
+          </td>
+          <td class="mono right bold">$300.00</td>
+        </tr>
+
+        <!-- SUPPORT -->
+        <tr style="background: #F8FAFC;">
+          <td colspan="2" style="padding: 8px 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #0891B2; font-weight: 600; border-bottom: 1px solid #E2E8F0;">Support</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">30-Day Post-Launch Support</div>
+            <div class="item-desc">Bug fixes • Content updates • Performance monitoring • Technical troubleshooting • Training</div>
+          </td>
+          <td class="mono right bold">$400.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div class="totals-box">
+        <div class="totals-row original">
+          <span class="label">Total Value</span>
+          <span class="value">$8,599.00</span>
+        </div>
+        <div class="totals-row discount">
+          <span class="label">Partnership Discount</span>
+          <span class="value">−$7,449.00</span>
+        </div>
+        <div class="totals-total">
+          <span class="label">Amount Due</span>
+          <span class="value">$1,150.00</span>
+        </div>
+        <div class="savings-badge">
+          You save $7,449 (87% off) — Introductory Partnership Rate
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-section">
+      <div class="label">Payment Details</div>
+
+      <!-- Option A: International USD -->
+      <div class="payment-box" style="margin-bottom: 16px;">
+        <div class="payment-method">Option A: International Wire — USD</div>
+        <div style="font-size: 11px; color: #64748B; margin-bottom: 16px;">Use if your bank can send USD directly.</div>
+
+        <div class="payment-grid-inner">
+          <span class="payment-label">SWIFT/BIC</span>
+          <span class="payment-value">CHFGUS44021</span>
+
+          <span class="payment-label">Routing (ABA)</span>
+          <span class="payment-value">091311229</span>
+
+          <span class="payment-label">Bank Name</span>
+          <span class="payment-value">Choice Financial Group</span>
+
+          <span class="payment-label">Bank Address</span>
+          <span class="payment-value">4501 23rd Avenue S, Fargo, ND 58104, USA</span>
+
+          <span class="payment-label">Account Number</span>
+          <span class="payment-value">202583720728</span>
+
+          <span class="payment-label">Beneficiary</span>
+          <span class="payment-value">Softworks Trading Company LLC</span>
+
+          <span class="payment-label">Beneficiary Address</span>
+          <span class="payment-value">30 N Gould St Ste N, Sheridan, WY 82801, USA</span>
+        </div>
+      </div>
+
+      <!-- Option B: International FX -->
+      <div class="payment-box">
+        <div class="payment-method">Option B: International Wire — Local Currency (NGN, EUR, GBP, etc.)</div>
+        <div style="font-size: 11px; color: #64748B; margin-bottom: 16px;">Use when sending in your local currency instead of USD. Routed through JP Morgan Chase as intermediary.<br><strong style="color: #0891B2;">Note:</strong> Please confirm with your bank that international wire transfers in NGN are supported before using this option.</div>
+
+        <div style="font-size: 11px; font-weight: 600; color: #64748B; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Receiving Bank (Intermediary)</div>
+        <div class="payment-grid-inner" style="margin-bottom: 20px;">
+          <span class="payment-label">SWIFT/BIC</span>
+          <span class="payment-value">CHASUS33XXX</span>
+
+          <span class="payment-label">Routing (ABA)</span>
+          <span class="payment-value">021000021</span>
+
+          <span class="payment-label">Bank Name</span>
+          <span class="payment-value">JP Morgan Chase Bank, N.A. – New York</span>
+
+          <span class="payment-label">Bank Address</span>
+          <span class="payment-value">383 Madison Avenue, Floor 23, New York, NY 10017, USA</span>
+        </div>
+
+        <div style="font-size: 11px; font-weight: 600; color: #64748B; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Beneficiary</div>
+        <div class="payment-grid-inner">
+          <span class="payment-label">Account Number</span>
+          <span class="payment-value">707567692</span>
+
+          <span class="payment-label">Beneficiary Name</span>
+          <span class="payment-value">Choice Financial Group</span>
+
+          <span class="payment-label">Beneficiary Address</span>
+          <span class="payment-value">4501 23rd Ave S, Fargo, ND 58104, USA</span>
+        </div>
+
+        <div class="payment-note" style="background: #FEF3C7; border: 1px solid #FCD34D; padding: 12px; margin-top: 16px;">
+          <strong style="color: #B45309;">⚠️ Required Memo/Reference (Option B only):</strong><br>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #92400E;">/FFC/202583720728/Softworks Trading Company LLC/-Sheridan, USA</span><br>
+          <span style="font-size: 10px; color: #B45309; margin-top: 4px; display: block;">Without this memo, funds may not reach the account.</span>
+        </div>
+      </div>
+
+      <div class="notes-section">
+        <div class="label">Notes</div>
+        <div class="notes" contenteditable>This invoice reflects a partnership rate for initial engagement. Standard rates apply to future projects.
+
+Subscription renewals (domain after 7 years, Google Workspace annually) will be invoiced at cost.
+
+API credits are pre-loaded; additional credits available at standard rates.
+
+Thank you for choosing Softworks.</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-contact">
+        <span>fred@sftwrks.com</span> • <span>sftwrks.com</span>
+      </div>
+      <div class="footer-brand">SOFTWORKS</div>
+    </div>
+  </div>
+</body>
+</html>
